@@ -1,0 +1,69 @@
+﻿# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa]rtifacts/
+
+# Rider / VS Code / VS
+.idea/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Test results
+*.trx
+TestResult*/
+TestResults/
+
+# Cache
+*.cache
+*.obj
+*.pdb
+*.mdb
+*.dbmdl
+*.bak
+*.ldf
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+*.nuget.props
+*.nuget.targets
+packages/
+.nuget/
+
+# EF Core Migrations build outputs (but keep migration code)
+[Mm]igrations/**/obj/
+[Mm]igrations/**/bin/
+
+# Logs
+*.log
+*.tlog
+
+# Coverage / Reports
+coverage/
+*.coverage
+*.coveragexml
+
+# Publish
+publish/
+out/
+
+# Temp
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Secrets (local only)
+appsettings.Development.json

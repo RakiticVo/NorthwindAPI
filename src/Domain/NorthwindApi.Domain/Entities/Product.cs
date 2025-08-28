@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace NorthwindApi.Api.Entities;
+namespace NorthwindApi.Domain.Entities;
 
 [Index("CategoryId", Name = "CategoriesProducts")]
 [Index("CategoryId", Name = "CategoryID")]
 [Index("ProductName", Name = "ProductName")]
 [Index("SupplierId", Name = "SupplierID")]
 [Index("SupplierId", Name = "SuppliersProducts")]
-public partial class Product
+public partial class Product : BaseEntity<int>
 {
-    [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
-
     [StringLength(40)]
     public string ProductName { get; set; } = null!;
 
@@ -39,23 +33,6 @@ public partial class Product
     public short? ReorderLevel { get; set; }
 
     public bool Discontinued { get; set; }
-
-    [Column("created_at")]
-    public DateTime CreatedAt { get; set; }
-
-    [Column("created_by")]
-    [StringLength(50)]
-    public string? CreatedBy { get; set; }
-
-    [Column("updated_at")]
-    public DateTime? UpdatedAt { get; set; }
-
-    [Column("updated_by")]
-    [StringLength(50)]
-    public string? UpdatedBy { get; set; }
-
-    [Column("row_version")]
-    public byte[]? RowVersion { get; set; }
 
     [ForeignKey("CategoryId")]
     [InverseProperty("Products")]

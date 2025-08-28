@@ -1,0 +1,28 @@
+﻿using NorthwindApi.Application.Abstractions;
+using NorthwindApi.Application.Common;
+using NorthwindApi.Application.Common.Commands;
+
+namespace NorthwindApi.Application.Features.Product.Commands;
+
+public record DeleteProductCommand(int Id) : ICommand<ApiResponse>;
+
+internal class DeleteProductCommandHandler(
+    ICrudService<Domain.Entities.Product, int> crudService,
+    IUnitOfWork unitOfWork
+) : ICommandHandler<DeleteProductCommand, ApiResponse>
+{
+    public async Task<ApiResponse> HandleAsync(DeleteProductCommand command, CancellationToken cancellationToken = default)
+    {
+        var product = await crudService.GetByIdAsync(command.Id);
+        if (product == null)
+        {
+            return new ApiResponse(404, "Product not found");
+        }
+        using (await unitOfWork.BeginTransactionAsync(cancellationToken: cancellationToken))
+        {
+            await crudService.DeleteAsync(product, cancellationToken);
+            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            return new ApiResponse(200, "Product deleted successfully");
+        }
+    }
+}

@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace NorthwindApi.Api.Entities;
+namespace NorthwindApi.Domain.Entities;
 
 [PrimaryKey("OrderId", "ProductId")]
 [Index("OrderId", Name = "OrderID")]
 [Index("OrderId", Name = "OrdersOrder_Details")]
 [Index("ProductId", Name = "ProductID")]
 [Index("ProductId", Name = "ProductsOrder_Details")]
-public partial class OrderDetail
+public partial class OrderDetail : BaseAuditable
 {
     [Key]
     [Column("OrderID")]

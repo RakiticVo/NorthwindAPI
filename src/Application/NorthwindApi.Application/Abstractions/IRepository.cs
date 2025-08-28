@@ -1,12 +1,22 @@
 ﻿using System.Linq.Expressions;
+using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Application.Abstractions;
 
-public interface IRepository<T> where T : class
+public interface IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey>
 {
-    Task<T?> GetByIdAsync(object id, CancellationToken ct = default);
-    Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>>? predicate, CancellationToken ct = default);
-    Task AddAsync(T entity, CancellationToken ct = default);
-    void Update(T entity);
-    void Remove(T entity);
+    IUnitOfWork UnitOfWork { get; }
+    IQueryable<TEntity> GetQueryableSet();
+
+    Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
+
+    Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
+
+    void Remove(TEntity entity);
+    
+    Task<T?> FirstOrDefaultAsync<T>(IQueryable<T> query);
+
+    Task<T?> SingleOrDefaultAsync<T>(IQueryable<T> query);
+
+    Task<List<T>> ToListAsync<T>(IQueryable<T> query);
 }

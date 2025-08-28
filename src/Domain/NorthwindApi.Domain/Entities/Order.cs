@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace NorthwindApi.Api.Entities;
+namespace NorthwindApi.Domain.Entities;
 
 [Index("CustomerId", Name = "CustomerID")]
 [Index("CustomerId", Name = "CustomersOrders")]
@@ -14,12 +12,8 @@ namespace NorthwindApi.Api.Entities;
 [Index("ShipPostalCode", Name = "ShipPostalCode")]
 [Index("ShippedDate", Name = "ShippedDate")]
 [Index("ShipVia", Name = "ShippersOrders")]
-public partial class Order
+public partial class Order : BaseEntity<int>
 {
-    [Key]
-    [Column("OrderID")]
-    public int OrderId { get; set; }
-
     [Column("CustomerID")]
     [StringLength(5)]
     public string? CustomerId { get; set; }
@@ -58,23 +52,6 @@ public partial class Order
 
     [StringLength(15)]
     public string? ShipCountry { get; set; }
-
-    [Column("created_at")]
-    public DateTime CreatedAt { get; set; }
-
-    [Column("created_by")]
-    [StringLength(50)]
-    public string? CreatedBy { get; set; }
-
-    [Column("updated_at")]
-    public DateTime? UpdatedAt { get; set; }
-
-    [Column("updated_by")]
-    [StringLength(50)]
-    public string? UpdatedBy { get; set; }
-
-    [Column("row_version")]
-    public byte[]? RowVersion { get; set; }
 
     [ForeignKey("CustomerId")]
     [InverseProperty("Orders")]

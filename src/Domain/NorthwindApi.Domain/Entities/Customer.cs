@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace NorthwindApi.Api.Entities;
+namespace NorthwindApi.Domain.Entities;
 
 [Index("City", Name = "City")]
 [Index("CompanyName", Name = "CompanyName")]
 [Index("PostalCode", Name = "PostalCode")]
 [Index("Region", Name = "Region")]
-public partial class Customer
+public partial class Customer : BaseEntity<string>
 {
-    [Key]
-    [Column("CustomerID")]
-    [StringLength(5)]
-    public string CustomerId { get; set; } = null!;
-
     [StringLength(40)]
     public string CompanyName { get; set; } = null!;
 
@@ -67,7 +60,7 @@ public partial class Customer
     [InverseProperty("Customer")]
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
-    [ForeignKey("CustomerId")]
+    [ForeignKey("Id")]
     [InverseProperty("Customers")]
     public virtual ICollection<CustomerDemographic> CustomerTypes { get; set; } = new List<CustomerDemographic>();
 }

@@ -1,25 +1,46 @@
-﻿using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NorthwindApi.Application.Abstractions;
+using NorthwindApi.Application.Common.DateTimes;
+using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Infrastructure.Repository;
 
-public class Repository<T>(NorthwindContext ctx) : IRepository<T> where T : class
+public class Repository<TEntity, TKey>(IDateTimeProvider dateTimeProvider, NorthwindContext dbContext)
+    : IRepository<TEntity, TKey>
+    where TEntity : BaseEntity<TKey>
 {
-    public async Task<T?> GetByIdAsync(object id, CancellationToken ct = default)
-        => await ctx.Set<T>().FindAsync([id], ct);
+    private DbSet<TEntity> DbSet => dbContext.Set<TEntity>();
+    public IUnitOfWork UnitOfWork => dbContext;
 
-    public async Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>>? predicate, CancellationToken ct = default)
+    public IQueryable<TEntity> GetQueryableSet()
     {
-        var q = ctx.Set<T>().AsNoTracking();
-        if (predicate != null) q = q.Where(predicate);
-        return await q.ToListAsync(ct);
+        var query = DbSet.AsQueryable();
+        return dbContext.Model.FindEntityType(typeof(TEntity))
+            ?.GetNavigations().Aggregate(query, func: (current, property) => current.Include
+                (property.Name)) ?? query;
     }
 
-    public async Task AddAsync(T entity, CancellationToken ct = default)
-        => await ctx.Set<T>().AddAsync(entity, ct);
+    public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
+    {
+        entity.CreatedAt = dateTimeProvider.OffsetNow;
+        await DbSet.AddAsync(entity, cancellationToken);
+    }
 
-    public void Update(T entity) => ctx.Set<T>().Update(entity);
+    public Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
+    {
+        entity.UpdatedAt = dateTimeProvider.OffsetNow;
+        DbSet.Update(entity);
+        return Task.CompletedTask;
+    }
 
-    public void Remove(T entity) => ctx.Set<T>().Remove(entity);
+    public void Remove(TEntity entity)
+    {
+        DbSet.Remove(entity);
+    }
+
+    public Task<T?> FirstOrDefaultAsync<T>(IQueryable<T> query) => query.FirstOrDefaultAsync();
+
+    public Task<T?> SingleOrDefaultAsync<T>(IQueryable<T> query)=> query.SingleOrDefaultAsync();
+
+    public Task<List<T>> ToListAsync<T>(IQueryable<T> query) => query.ToListAsync();
 }

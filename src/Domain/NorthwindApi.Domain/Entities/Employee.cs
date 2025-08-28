@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace NorthwindApi.Api.Entities;
+namespace NorthwindApi.Domain.Entities;
 
 [Index("LastName", Name = "LastName")]
 [Index("PostalCode", Name = "PostalCode")]
-public partial class Employee
+public partial class Employee : BaseEntity<int>
 {
-    [Key]
-    [Column("EmployeeID")]
-    public int EmployeeId { get; set; }
-
     [StringLength(20)]
     public string LastName { get; set; } = null!;
 
@@ -64,23 +58,6 @@ public partial class Employee
     [StringLength(255)]
     public string? PhotoPath { get; set; }
 
-    [Column("created_at")]
-    public DateTime CreatedAt { get; set; }
-
-    [Column("created_by")]
-    [StringLength(50)]
-    public string? CreatedBy { get; set; }
-
-    [Column("updated_at")]
-    public DateTime? UpdatedAt { get; set; }
-
-    [Column("updated_by")]
-    [StringLength(50)]
-    public string? UpdatedBy { get; set; }
-
-    [Column("row_version")]
-    public byte[]? RowVersion { get; set; }
-
     [InverseProperty("ReportsToNavigation")]
     public virtual ICollection<Employee> InverseReportsToNavigation { get; set; } = new List<Employee>();
 
@@ -91,7 +68,7 @@ public partial class Employee
     [InverseProperty("InverseReportsToNavigation")]
     public virtual Employee? ReportsToNavigation { get; set; }
 
-    [ForeignKey("EmployeeId")]
+    [ForeignKey("Id")]
     [InverseProperty("Employees")]
     public virtual ICollection<Territory> Territories { get; set; } = new List<Territory>();
 }

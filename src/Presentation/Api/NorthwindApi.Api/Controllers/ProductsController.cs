@@ -1,130 +1,65 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using NorthwindApi.Api.Entities;
+using NorthwindApi.Application.Common;
 using NorthwindApi.Application.DTOs.Product;
-using NorthwindApi.Infrastructure;
+using NorthwindApi.Application.Features.Product.Commands;
+using NorthwindApi.Application.Features.Product.Queries;
 
 namespace NorthwindApi.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductsController(NorthwindContext context) : ControllerBase
+public class ProductsController(Dispatcher dispatcher) : ControllerBase
 {
     // GET: api/products
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
+    public async Task<ActionResult<ApiResponse>> GetProducts()
     {
-        var products = await context.Products
-            .AsNoTracking()
-            .Select(p => new ProductDto(
-                p.ProductId,
-                p.ProductName,
-                p.SupplierId,
-                p.CategoryId,
-                p.QuantityPerUnit,
-                p.UnitPrice,
-                p.UnitsInStock,
-                p.UnitsOnOrder,
-                p.ReorderLevel,
-                p.Discontinued
-            ))
-            .ToListAsync();
-
-        return Ok(products);
+        var data = await dispatcher.DispatchAsync(new GetProducts());
+        return Ok(data.Result);
     }
 
     // GET: api/products/5
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<ProductDto>> GetProduct(int id)
+    public async Task<ActionResult<ApiResponse>> GetProduct(int id)
     {
-        var product = await context.Products
-            .AsNoTracking()
-            .Where(p => p.ProductId == id)
-            .Select(p => new ProductDto(
-                p.ProductId,
-                p.ProductName,
-                p.SupplierId,
-                p.CategoryId,
-                p.QuantityPerUnit,
-                p.UnitPrice,
-                p.UnitsInStock,
-                p.UnitsOnOrder,
-                p.ReorderLevel,
-                p.Discontinued
-            ))
-            .FirstOrDefaultAsync();
-
-        return product is null ? NotFound() : Ok(product);
+        var data = await dispatcher.DispatchAsync(new GetProductById(id));
+        if(data.Result is not ProductDto product)
+        {
+            return NotFound(data.Message);
+        }
+        return Ok(product);
     }
 
     // POST: api/products
     [HttpPost]
-    public async Task<ActionResult<ProductDto>> CreateProduct(CreateProductRequest request)
+    public async Task<ActionResult<ApiResponse>> CreateProduct(CreateProductRequest request)
     {
-        var product = new Product
-        {
-            ProductName = request.ProductName,
-            SupplierId = request.SupplierId,
-            CategoryId = request.CategoryId,
-            QuantityPerUnit = request.QuantityPerUnit,
-            UnitPrice = request.UnitPrice,
-            UnitsInStock = request.UnitsInStock,
-            UnitsOnOrder = request.UnitsOnOrder,
-            ReorderLevel = request.ReorderLevel,
-            Discontinued = request.Discontinued
-        };
-
-        context.Products.Add(product);
-        await context.SaveChangesAsync();
-
-        var dto = new ProductDto(
-            product.ProductId,
-            product.ProductName,
-            product.SupplierId,
-            product.CategoryId,
-            product.QuantityPerUnit,
-            product.UnitPrice,
-            product.UnitsInStock,
-            product.UnitsOnOrder,
-            product.ReorderLevel,
-            product.Discontinued
-        );
-
-        return CreatedAtAction(nameof(GetProduct), new { id = product.ProductId }, dto);
+        var data = await dispatcher.DispatchAsync(new CreateProductCommand(request));
+        var product = (ProductDto)data.Result;
+        return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, data.Result);
     }
 
     // PUT: api/products/5
     [HttpPut("{id:int}")]
     public async Task<IActionResult> UpdateProduct(int id, UpdateProductRequest request)
     {
-        var product = await context.Products.FindAsync(id);
-        if (product is null) return NotFound();
-
-        product.ProductName = request.ProductName;
-        product.SupplierId = request.SupplierId;
-        product.CategoryId = request.CategoryId;
-        product.QuantityPerUnit = request.QuantityPerUnit;
-        product.UnitPrice = request.UnitPrice;
-        product.UnitsInStock = request.UnitsInStock;
-        product.UnitsOnOrder = request.UnitsOnOrder;
-        product.ReorderLevel = request.ReorderLevel;
-        product.Discontinued = request.Discontinued;
-
-        await context.SaveChangesAsync();
-
-        return NoContent();
+        var data = await dispatcher.DispatchAsync(new UpdateProductCommand(id, request));
+        if (data.Result is not ProductDto)
+        {
+            return NotFound(data.Message);
+        }
+        return Ok(data.Result);
     }
 
     // DELETE: api/products/5
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteProduct(int id)
     {
-        var product = await context.Products.FindAsync(id);
-        if (product is null) return NotFound();
-
-        context.Products.Remove(product);
-        await context.SaveChangesAsync();
-
-        return NoContent();
+       var data = await dispatcher.DispatchAsync(new DeleteProductCommand(id));
+       if (data.StatusCode == 200)
+       {
+           return Ok(data.Message);
+       }
+       return NotFound(data.Message);
     }
 }

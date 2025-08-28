@@ -1,7 +1,7 @@
 ﻿namespace NorthwindApi.Application.DTOs.Product;
 
 public record ProductDto(
-    int ProductId,
+    int Id,
     string ProductName,
     int? SupplierId,
     int? CategoryId,

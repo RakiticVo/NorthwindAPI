@@ -20,7 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Domain\NorthwindApi.Domain\NorthwindApi.Domain.csproj" />
-<!--      <ProjectReference Include="..\..\Infrastructure\NorthwindApi.Infrastructure\NorthwindApi.Infrastructure.csproj" />-->
+      <ProjectReference Include="..\..\Infrastructure\NorthwindApi.Infrastructure\NorthwindApi.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

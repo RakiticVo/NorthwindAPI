@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using NorthwindApi.Infrastructure.Cache;
 
-namespace NorthwindApi.Application.Cache;
+namespace NorthwindApi.Infrastructure.Cache;
 
 public class BusinessCacheService(ICacheService cache, ILogger<BusinessCacheService> logger)
 {

@@ -1,17 +1,8 @@
 ﻿namespace NorthwindApi.Application.DTOs.Product;
 
-public record ProductDto(
-    int Id,
-    string ProductName,
-    int? SupplierId,
-    int? CategoryId,
-    string? QuantityPerUnit,
-    decimal? UnitPrice,
-    short? UnitsInStock,
-    short? UnitsOnOrder,
-    short? ReorderLevel,
-    bool Discontinued);
-
+/// <summary>
+/// Product Requests
+/// </summary>
 public record CreateProductRequest(
     string ProductName,
     int? SupplierId,
@@ -24,6 +15,21 @@ public record CreateProductRequest(
     bool Discontinued);
 
 public record UpdateProductRequest(
+    string ProductName,
+    int? SupplierId,
+    int? CategoryId,
+    string? QuantityPerUnit,
+    decimal? UnitPrice,
+    short? UnitsInStock,
+    short? UnitsOnOrder,
+    short? ReorderLevel,
+    bool Discontinued);
+    
+/// <summary>
+/// Product Response
+/// </summary>
+public record ProductDto(
+    int Id,
     string ProductName,
     int? SupplierId,
     int? CategoryId,

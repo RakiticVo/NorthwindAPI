@@ -27,7 +27,7 @@ public class ProductsController(Dispatcher dispatcher) : ControllerBase
         {
             return NotFound(data.Message);
         }
-        return Ok(product);
+        return Ok(data.Result);
     }
 
     // POST: api/products

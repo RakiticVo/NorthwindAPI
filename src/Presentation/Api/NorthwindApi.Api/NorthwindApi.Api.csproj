@@ -27,11 +27,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Infrastructure\NorthwindApi.Infrastructure\NorthwindApi.Infrastructure.csproj" />
+      <Folder Include="Controllers\" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
+      <ProjectReference Include="..\..\..\Infrastructure\NorthwindApi.Infrastructure\NorthwindApi.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\..\Infrastructure\NorthwindApi.Persistence\NorthwindApi.Persistence.csproj" />
     </ItemGroup>
 
 </Project>

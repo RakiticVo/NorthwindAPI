@@ -5,16 +5,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NorthwindApi.Application;
 using NorthwindApi.Application.Abstractions;
-using NorthwindApi.Application.Cache;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.DateTimes;
 using NorthwindApi.Application.Mapping;
-using NorthwindApi.Infrastructure;
 using NorthwindApi.Infrastructure.Cache;
 using NorthwindApi.Infrastructure.Locking;
-using NorthwindApi.Infrastructure.Repository;
 using NorthwindApi.Infrastructure.Security;
 using NorthwindApi.Infrastructure.Middlewares;
+using NorthwindApi.Persistence;
+using NorthwindApi.Persistence.Repository;
 
 var logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -25,6 +24,7 @@ builder.Host.UseSerilog(logger);
 
 // AppSettings
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+builder.Services.AddHttpContextAccessor();
 
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()!;
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -34,11 +34,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         o.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateIssuerSigningKey = true,
             ValidIssuer = jwtSettings.Issuer,
+            ValidateAudience = true,
             ValidAudience = jwtSettings.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SigningKey))
+            ValidateLifetime = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SigningKey)),
+            ValidateIssuerSigningKey = true,
         };
     });
 
@@ -71,7 +72,7 @@ builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(cfg => { }, typeof(AutoMapperProfile));
+builder.Services.AddAutoMapper(_ => { }, typeof(AutoMapperProfile));
 builder.Services.AddHandlers(typeof(Dispatcher).Assembly);
 
 // Đăng ký SQL Server Cache

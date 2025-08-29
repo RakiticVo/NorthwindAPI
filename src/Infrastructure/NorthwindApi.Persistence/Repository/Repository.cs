@@ -3,7 +3,7 @@ using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common.DateTimes;
 using NorthwindApi.Domain.Entities;
 
-namespace NorthwindApi.Infrastructure.Repository;
+namespace NorthwindApi.Persistence.Repository;
 
 public class Repository<TEntity, TKey>(IDateTimeProvider dateTimeProvider, NorthwindContext dbContext)
     : IRepository<TEntity, TKey>

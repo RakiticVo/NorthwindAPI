@@ -2,8 +2,9 @@
 
 public class JwtSettings
 {
-    public string Issuer { get; set; } = "northwind.api";
-    public string Audience { get; set; } = "northwind.api.clients";
-    public string SigningKey { get; set; } = null!;
-    public int ExpMinutes { get; set; } = 120;
+    public string Issuer { get; set; } = string.Empty;
+    public string Audience { get; set; } = string.Empty;
+    public string SigningKey { get; set; } = string.Empty;
+    public int TokenExpireMinutes { get; set; }
+    public int RefreshTokenExpireMinutes { get; set; }
 }

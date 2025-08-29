@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Application.DTOs.Product;
 using NorthwindApi.Domain.Entities;
 
@@ -8,6 +9,13 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
+        // Mapping cho Auth
+        CreateMap<User, RegisterRequest>();
+        CreateMap<User, RegisterResponse>().ReverseMap();
+        CreateMap<User, LoginRequest>();
+        CreateMap<UserToken, UserTokenRequest>();
+        CreateMap<User, UpdateUserRequest>();
+            
         // Mapping cho Product
         CreateMap<Product, ProductDto>().ReverseMap();
         CreateMap<CreateProductRequest, Product>()

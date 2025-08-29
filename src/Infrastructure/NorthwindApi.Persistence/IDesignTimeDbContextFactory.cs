@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace NorthwindApi.Infrastructure;
+namespace NorthwindApi.Persistence;
 
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<NorthwindContext>
 {

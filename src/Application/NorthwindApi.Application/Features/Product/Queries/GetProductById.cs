@@ -11,9 +11,12 @@ public record GetProductById(int ProductId) : IQuery<ApiResponse>
     public int ProductId { get; set; } = ProductId;
 }
 
-internal class GetProductByIdHandler(ICrudService<Domain.Entities.Product, int> crudService, IMapper mapper) : IQueryHandler<GetProductById, ApiResponse>
+internal class GetProductByIdHandler(
+    ICrudService<Domain.Entities.Product, int> crudService,
+    IMapper mapper
+) : IQueryHandler<GetProductById, ApiResponse>
 {
-    public async Task<ApiResponse> HandleAsync(GetProductById query, CancellationToken cancellationToken = default)
+    public async Task<ApiResponse?> HandleAsync(GetProductById query, CancellationToken cancellationToken = default)
     {
         var response = await crudService.GetByIdAsync(query.ProductId);
         return response == null 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Domain.Entities;
 
-namespace NorthwindApi.Infrastructure;
+namespace NorthwindApi.Persistence;
 
 public class NorthwindContext(DbContextOptions<NorthwindContext> options) : DbContext(options), IUnitOfWork
 {
@@ -23,6 +23,9 @@ public class NorthwindContext(DbContextOptions<NorthwindContext> options) : DbCo
     public DbSet<Employee> Employees { get; set; } = null!;
     public DbSet<Territory> Territories { get; set; } = null!;
     public DbSet<Region> Regions { get; set; } = null!;
+    public DbSet<User> Users { get; set; } = null!;
+    public DbSet<UserToken> UserTokens { get; set; } = null!;
+    public DbSet<UserRole> UserRoles { get; set; } = null!;
 
     public DbConnection Connection => Database.GetDbConnection();
     public DbTransaction? CurrentTransaction => _currentTransaction?.GetDbTransaction();

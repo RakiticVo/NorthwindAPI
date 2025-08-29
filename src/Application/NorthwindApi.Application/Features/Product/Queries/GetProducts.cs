@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using NorthwindApi.Application.Cache;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Queries;
 using NorthwindApi.Application.DTOs.Product;
@@ -15,7 +14,7 @@ internal class GetProductsHandler(
     BusinessCacheService cacheService
 ) : IQueryHandler<GetProducts, ApiResponse>
 {
-    public async Task<ApiResponse?> HandleAsync(GetProducts query, CancellationToken ct = default)
+    public async Task<ApiResponse?> HandleAsync(GetProducts query, CancellationToken cancellationToken = default)
     {
         return await cacheService.GetOrSetAsync(
             CacheKeys.Products,
@@ -26,6 +25,6 @@ internal class GetProductsHandler(
                 return new ApiResponse(200, "Get product successfully", products);
             },
             TimeSpan.FromMinutes(5),
-            ct);
+            cancellationToken);
     }
 }

@@ -5,14 +5,14 @@ using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Application.Features.Auth.Queries;
 
-public record GetDetails : IQuery<ApiResponse> { }
+public record GetUserDetails : IQuery<ApiResponse> { }
 
 internal class GetDetailsHandler(
     ICrudService<User, int> crudService,
     IHttpContextAccessor httpContextAccessor
-) : IQueryHandler<GetDetails, ApiResponse>
+) : IQueryHandler<GetUserDetails, ApiResponse>
 {
-    public async Task<ApiResponse?> HandleAsync(GetDetails query, CancellationToken cancellationToken = default)
+    public async Task<ApiResponse?> HandleAsync(GetUserDetails query, CancellationToken cancellationToken = default)
     {
         var userIdClaim = httpContextAccessor.HttpContext?.User?.FindFirst("user_id")?.Value;
         if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId))

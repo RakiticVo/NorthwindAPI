@@ -9,8 +9,6 @@ public class ApiResponse<T>
     [DataMember]
     public int StatusCode { get; set; }
 
-    public bool IsSuccessStatusCode => StatusCode is >= 200 and < 300;
-
     [DataMember]
     public string Message { get; set; } = string.Empty;
 

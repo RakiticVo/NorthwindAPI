@@ -5,7 +5,7 @@ namespace NorthwindApi.Infrastructure.Security;
 
 public interface ITokenService
 {
-    string CreateToken(User user, bool isMobile, bool isRefreshToken);
+    string CreateToken(User user, string deviceType, bool isRefreshToken);
     ClaimsPrincipal? ValidateToken(string token);
     bool IsTokenExpired(string token);
 }

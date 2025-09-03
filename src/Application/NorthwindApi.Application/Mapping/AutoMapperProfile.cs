@@ -10,11 +10,28 @@ public class AutoMapperProfile : Profile
     public AutoMapperProfile()
     {
         // Mapping cho Auth
-        CreateMap<User, RegisterRequest>();
-        CreateMap<User, RegisterResponse>().ReverseMap();
-        CreateMap<User, LoginRequest>();
-        CreateMap<UserToken, UserTokenRequest>();
-        CreateMap<User, UpdateUserRequest>();
+        CreateMap<RegisterRequest, User>()
+            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
+            .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+            .ForMember(dest => dest.UserRoleCode, opt => opt.MapFrom(src => src.RoleCode))
+            .ForMember(dest => dest.HashedPassword, opt => opt.MapFrom(src => src.Password))
+            .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => "admin"))
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedBy, opt => opt.Ignore())
+            .ForMember(dest => dest.RowVersion, opt => opt.Ignore())
+            .ForMember(dest => dest.UserTokens, opt => opt.Ignore());
+        CreateMap<RegisterResponse, User>().ReverseMap();
+        CreateMap<LoginRequest, User>();
+        CreateMap<UserTokenRequest, UserToken>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedBy, opt => opt.Ignore())
+            .ForMember(dest => dest.RowVersion, opt => opt.Ignore())
+            .ForMember(dest => dest.User, opt => opt.Ignore());
+        CreateMap<UpdateUserRequest, User>();
             
         // Mapping cho Product
         CreateMap<Product, ProductDto>().ReverseMap();

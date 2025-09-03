@@ -1,24 +1,20 @@
-﻿using System.Security.Cryptography;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+﻿using Microsoft.AspNetCore.Identity;
+using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Infrastructure.Security;
 
-public class PasswordHasher
+public static class PasswordHasherHandler
 {
+    private static readonly PasswordHasher<User> Hasher = new();
+
     public static string Hash(string password)
     {
-        var salt = RandomNumberGenerator.GetBytes(16);
-        var hash = KeyDerivation.Pbkdf2(password, salt, KeyDerivationPrf.HMACSHA256, 10000, 32);
-        return $"{Convert.ToBase64String(salt)}.{Convert.ToBase64String(hash)}";
+        return Hasher.HashPassword(null!, password);
     }
 
     public static bool Verify(string password, string storedHash)
     {
-        var parts = storedHash.Split('.');
-        if (parts.Length != 2) return false;
-        var salt = Convert.FromBase64String(parts[0]);
-        var original = Convert.FromBase64String(parts[1]);
-        var attempt = KeyDerivation.Pbkdf2(password, salt, KeyDerivationPrf.HMACSHA256, 10000, 32);
-        return CryptographicOperations.FixedTimeEquals(original, attempt);
+        var result = Hasher.VerifyHashedPassword(null!, storedHash, password);
+        return result is PasswordVerificationResult.Success or PasswordVerificationResult.SuccessRehashNeeded;
     }
 }

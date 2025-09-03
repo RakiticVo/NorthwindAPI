@@ -5,16 +5,16 @@ using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Application.Features.Auth.Queries;
 
-public record GetDetailsById(int UserId) : IQuery<ApiResponse>
+public record GetUserDetailsById(int UserId) : IQuery<ApiResponse>
 {
     public int UserId { get; set; } = UserId;
 }
 
 internal class GetDetailsByIdHandler(
     ICrudService<User, int> crudService
-) : IQueryHandler<GetDetailsById, ApiResponse>
+) : IQueryHandler<GetUserDetailsById, ApiResponse>
 {
-    public async Task<ApiResponse?> HandleAsync(GetDetailsById query, CancellationToken cancellationToken = default)
+    public async Task<ApiResponse?> HandleAsync(GetUserDetailsById query, CancellationToken cancellationToken = default)
     {
         var user = await crudService.GetByIdAsync(query.UserId);
         return user == null 

@@ -3,9 +3,10 @@
 /// <summary>
 /// Auth Request
 /// </summary>
-public record RegisterRequest(string Username, string Email, string Password, string? RoleCode);
+public record RegisterRequest(string Username, string Email, string Password, string? RoleCode = "user");
 
-public record LoginRequest(string Username, string Password);
+public record LoginRequest(string Username, string Password, string DeviceType);
+public record RefreshTokenRequest(string Username, string DeviceType);
 
 public record UserTokenRequest
 {
@@ -24,7 +25,7 @@ public record UpdateUserRequest(string? Email, string? RoleCode, string? NewPass
 public record RegisterResponse(
     string Username,
     string Email,
-    string RoleCode
+    string UserRoleCode
 );
 
 public record AuthResponse(

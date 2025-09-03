@@ -20,7 +20,7 @@ public class TokenService : ITokenService
             SecurityAlgorithms.HmacSha256);
     }
 
-    public string CreateToken(User user, bool isMobile, bool isRefreshToken)
+    public string CreateToken(User user, string deviceType, bool isRefreshToken)
     {
         var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         var jti = Guid.NewGuid().ToString("N");
@@ -38,7 +38,7 @@ public class TokenService : ITokenService
                 new Claim("user_id", user.Id.ToString()),
                 new Claim("email", user.Email),
                 new Claim("user_role_code", user.UserRoleCode ?? "user"),
-                new Claim("isMobile", isMobile ? "Mobile" : "Web")
+                new Claim("isMobile", deviceType)
             ]);
         }
 

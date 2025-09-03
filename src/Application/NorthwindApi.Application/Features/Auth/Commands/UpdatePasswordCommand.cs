@@ -28,11 +28,11 @@ internal class UpdatePasswordCommandHandler(
             if (user == null)
                 return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
             
-            if (PasswordHasher.Verify(command.UserPassword, user.HashedPassword))
+            if (PasswordHasherHandler.Verify(command.UserPassword, user.HashedPassword))
                 return new ApiResponse(StatusCodes.Status403Forbidden, "Duplicated Password!!!");
         
             // Hash password mới và update
-            user.HashedPassword = PasswordHasher.Hash(command.UserPassword);
+            user.HashedPassword = PasswordHasherHandler.Hash(command.UserPassword);
             await crudService.UpdateAsync(user, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
         

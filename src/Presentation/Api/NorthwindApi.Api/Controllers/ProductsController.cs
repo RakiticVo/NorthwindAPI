@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NorthwindApi.Api.Handler;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.DTOs.Product;
 using NorthwindApi.Application.Features.Product.Commands;
@@ -8,35 +10,31 @@ namespace NorthwindApi.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ProductsController(Dispatcher dispatcher) : ControllerBase
 {
     // GET: api/products
     [HttpGet]
-    public async Task<ActionResult<ApiResponse>> GetProducts()
+    public async Task<IActionResult> GetProducts()
     {
         var data = await dispatcher.DispatchAsync(new GetProducts());
-        return Ok(data.Result);
+        return this.ReturnActionHandler(data);
     }
 
     // GET: api/products/5
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<ApiResponse>> GetProduct(int id)
+    public async Task<IActionResult> GetProduct(int id)
     {
         var data = await dispatcher.DispatchAsync(new GetProductById(id));
-        if(data.Result is not ProductDto product)
-        {
-            return NotFound(data.Message);
-        }
-        return Ok(data.Result);
+        return this.ReturnActionHandler(data);
     }
 
     // POST: api/products
     [HttpPost]
-    public async Task<ActionResult<ApiResponse>> CreateProduct(CreateProductRequest request)
+    public async Task<IActionResult> CreateProduct(CreateProductRequest request)
     {
         var data = await dispatcher.DispatchAsync(new CreateProductCommand(request));
-        var product = (ProductDto)data.Result;
-        return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, data.Result);
+        return this.ReturnActionHandler(data);
     }
 
     // PUT: api/products/5
@@ -44,11 +42,7 @@ public class ProductsController(Dispatcher dispatcher) : ControllerBase
     public async Task<IActionResult> UpdateProduct(int id, UpdateProductRequest request)
     {
         var data = await dispatcher.DispatchAsync(new UpdateProductCommand(id, request));
-        if (data.Result is not ProductDto)
-        {
-            return NotFound(data.Message);
-        }
-        return Ok(data.Result);
+        return this.ReturnActionHandler(data);
     }
 
     // DELETE: api/products/5
@@ -56,10 +50,6 @@ public class ProductsController(Dispatcher dispatcher) : ControllerBase
     public async Task<IActionResult> DeleteProduct(int id)
     {
        var data = await dispatcher.DispatchAsync(new DeleteProductCommand(id));
-       if (data.StatusCode == 200)
-       {
-           return Ok(data.Message);
-       }
-       return NotFound(data.Message);
+       return this.ReturnActionHandler(data);
     }
 }

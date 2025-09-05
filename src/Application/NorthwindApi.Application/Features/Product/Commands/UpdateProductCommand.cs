@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
@@ -24,12 +25,12 @@ internal class UpdateProductCommandHandler(
         {
             var existingProduct = await crudService.GetByIdAsync(command.Id);
             if (existingProduct == null)
-                throw new Exception("Product not found");
+                return new ApiResponse(StatusCodes.Status404NotFound, "Product not found");
             mapper.Map(command.UpdateProductRequest, existingProduct);
             await crudService.UpdateAsync(existingProduct, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken); 
             var productDto = mapper.Map<ProductDto>(existingProduct);
-            return new ApiResponse(200, "Product updated successfully", productDto);
+            return new ApiResponse(StatusCodes.Status200OK, "Product updated successfully", productDto);
         }
     }
 }

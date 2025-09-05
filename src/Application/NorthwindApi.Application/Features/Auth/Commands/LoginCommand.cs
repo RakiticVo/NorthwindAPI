@@ -26,18 +26,19 @@ internal class LoginAuthCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var user = await AuthActionHandler.CheckUserLoginHandler(
-                userRepository,
-                command.LoginRequest.Username,
+            var user = await userRepository.FirstOrDefaultAsync(userRepository.GetQueryableSet()
+                .Where(x => x.Username == command.LoginRequest.Username));
+            var result = AuthActionHandler.CheckUserLoginHandler(
+                user,
                 command.LoginRequest.Password
             );
-            if (user is ApiResponse) return user;
+            if (result is not null) return result;
             
-            var userTokenRequest = AuthActionHandler.CreateToken(tokenService, user, command.LoginRequest.DeviceType);
+            var userTokenRequest = AuthActionHandler.CreateToken(tokenService, user!, command.LoginRequest.DeviceType);
             var userToken = mapper.Map<UserToken>(userTokenRequest);
             var existingUserToken = await userTokenRepository.FirstOrDefaultAsync(
             userTokenRepository.GetQueryableSet()
-                .Where(x => x.UserId == user.UserId 
+                .Where(x => x.UserId == user!.Id 
                     && x.DeviceType == command.LoginRequest.DeviceType));
             if (existingUserToken == null) await crudService.AddAsync(userToken, cancellationToken);
             else 
@@ -49,8 +50,7 @@ internal class LoginAuthCommandHandler(
             }
 
             await unitOfWork.CommitTransactionAsync(cancellationToken);
-            var authResponse = new AuthResponse(user.Username, userTokenRequest.AccessToken, userToken.RefreshToken);
-            
+            var authResponse = new AuthResponse(user!.Username, userTokenRequest.AccessToken, userToken.RefreshToken);
             return new ApiResponse(StatusCodes.Status200OK, "Login successfully", authResponse);
         }
     }

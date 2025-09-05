@@ -10,10 +10,10 @@ public abstract class BaseAuditable
 
     [Column("created_by")]
     [StringLength(50)]
-    public string? CreatedBy { get; set; } = "";
+    public string CreatedBy { get; set; } = "";
 
     [Column("updated_at")]
-    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
 
     [Column("updated_by")]
     [StringLength(50)]

@@ -28,22 +28,28 @@ public static class AuthActionHandler
         return userTokenRequest;
     }
 
-    public static async Task<dynamic> CheckUserLoginHandler(
-        IRepository<User, int> userRepository,
-        string userName,
+    public static ApiResponse? CheckUserLoginHandler(
+        User? user,
         string? password = null
-    )
-    {
-        var user = await userRepository.FirstOrDefaultAsync(userRepository.GetQueryableSet()
-            .Where(x => x.Username == userName));
-        if (user == null)
-            return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
-        if (password != null)
-        {
-            var isPasswordVerified = PasswordHasherHandler.Verify(password, user.HashedPassword);
-            if (!isPasswordVerified)
-                return new ApiResponse(StatusCodes.Status403Forbidden, "Incorrect password!!!");   
-        }
-        return user;
+    ) {
+        if (user == null) return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
+        if (password is null) return null;
+        var isPasswordVerified = PasswordHasherHandler.Verify(password, user.HashedPassword);
+        return !isPasswordVerified 
+            ? new ApiResponse(StatusCodes.Status403Forbidden, "Incorrect password!!!") 
+            : null;
+    }
+    
+    public static ApiResponse? CheckUserTokenPrincipalAndExpiredHandler(UserToken? userToken, ITokenService tokenService) {
+        if (userToken is null) return new ApiResponse(StatusCodes.Status401Unauthorized, "Please Login!!!");
+            
+        var principal = tokenService.ValidateToken(userToken.RefreshToken);
+        if (principal == null) 
+            return new ApiResponse(StatusCodes.Status401Unauthorized, "Token Invalid!!! Please login again!!!");
+            
+        var expiredToken = tokenService.IsTokenExpired(userToken.RefreshToken);
+        return expiredToken 
+            ? new ApiResponse(StatusCodes.Status401Unauthorized, "Token Expired!!! Please login again!!!") 
+            : null;
     }
 }

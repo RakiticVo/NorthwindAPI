@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using NorthwindApi.Application;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
@@ -41,9 +42,38 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SigningKey)),
             ValidateIssuerSigningKey = true,
         };
+        // Custom Unauthorized (chưa đăng nhập / token invalid)
+        o.Events = new JwtBearerEvents
+        {
+            OnChallenge = context =>
+            {
+                context.HandleResponse(); // Ngăn ASP.NET Core trả về mặc định
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                context.Response.ContentType = "application/json";
+                return context.Response.WriteAsync(
+                    "{\n" +
+                    "\"statusCode\": 401,\n" +
+                    "\"message\": \"Please login!!!\"" +
+                    "\n}");
+            },
+            OnForbidden = context =>
+            {
+                context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                context.Response.ContentType = "application/json";
+                return context.Response.WriteAsync(
+                    "{\n" +
+                    "\"statusCode\": 403,\n" +
+                    "\"message\": \"You aren't Admin!!!\"" +
+                    "\n}");
+            }
+        };
     });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("AdminPolicy", policy =>
+    {
+        policy.RequireClaim("user_role_code", "admin");
+    });
 
 // EF Core
 builder.Services.AddDbContext<NorthwindContext>(opt =>
@@ -71,7 +101,38 @@ builder.Services.AddSingleton<ITokenService, TokenService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Northwind API", Version = "v1" });
+
+    // Thêm JWT Bearer vào Swagger
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Nhập JWT theo format: Bearer {token}",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header,
+            },
+            new List<string>()
+        }
+    });
+});
 builder.Services.AddAutoMapper(_ => { }, typeof(AutoMapperProfile));
 builder.Services.AddHandlers(typeof(Dispatcher).Assembly);
 

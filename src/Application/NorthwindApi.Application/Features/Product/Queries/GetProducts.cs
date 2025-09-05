@@ -16,15 +16,8 @@ internal class GetProductsHandler(
 {
     public async Task<ApiResponse?> HandleAsync(GetProducts query, CancellationToken cancellationToken = default)
     {
-        return await cacheService.GetOrSetAsync(
-            CacheKeys.Products,
-            async () =>
-            {
-                var response = await crudService.GetAsync();
-                var products = mapper.Map<List<ProductDto>>(response);
-                return new ApiResponse(200, "Get product successfully", products);
-            },
-            TimeSpan.FromMinutes(5),
-            cancellationToken);
+        var response = await crudService.GetAsync();
+        var products = mapper.Map<List<ProductDto>>(response);
+        return new ApiResponse(200, "Get product successfully", products);
     }
 }

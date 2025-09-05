@@ -1,15 +1,36 @@
 ﻿using System.Data;
 using System.Data.Common;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using NorthwindApi.Application.Abstractions;
+using NorthwindApi.Application.Common.DateTimes;
 using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Persistence;
 
-public class NorthwindContext(DbContextOptions<NorthwindContext> options) : DbContext(options), IUnitOfWork
+public class NorthwindContext : DbContext, IUnitOfWork
 {
+    private readonly IDateTimeProvider? _dateTimeProvider;
+    private readonly IHttpContextAccessor? _httpContextAccessor;
     private IDbContextTransaction? _currentTransaction;
+
+    // Constructor cho EF Migrations
+    public NorthwindContext(DbContextOptions<NorthwindContext> options)
+        : base(options)
+    {
+    }
+
+    // Constructor cho runtime DI
+    public NorthwindContext(
+        DbContextOptions<NorthwindContext> options,
+        IDateTimeProvider dateTimeProvider,
+        IHttpContextAccessor httpContextAccessor
+    ) : base(options)
+    {
+        _dateTimeProvider = dateTimeProvider;
+        _httpContextAccessor = httpContextAccessor;
+    }
 
     // DbSets
     public DbSet<Customer> Customers { get; set; } = null!;
@@ -131,21 +152,38 @@ public class NorthwindContext(DbContextOptions<NorthwindContext> options) : DbCo
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        foreach (var entry in ChangeTracker.Entries())
+        // var claims = _httpContextAccessor?.HttpContext?.User?.Claims;
+        //
+        // if (claims != null)
+        // {
+        //     Console.WriteLine("== JWT Claims ==");
+        //     foreach (var claim in claims)
+        //     {
+        //         Console.WriteLine($"{claim.Type}: {claim.Value}");
+        //     }
+        // }
+        // else
+        // {
+        //     Console.WriteLine("No claims found - HttpContext is null or no user authenticated");
+        // }
+        var userName = _httpContextAccessor?.HttpContext?.User?.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value ?? "system"; 
+        // Console.WriteLine($"[NorthwindContext] SaveChangesAsync called by: {userName}");
+        foreach (var entry in ChangeTracker.Entries<BaseAuditable>())
         {
             switch (entry.State)
             {
                 case EntityState.Added:
-                    if (entry.Properties.Any(p => p.Metadata.Name == "CreatedAt"))
-                        entry.CurrentValues["CreatedAt"] = DateTime.UtcNow;
-                    if (entry.Properties.Any(p => p.Metadata.Name == "CreatedBy"))
-                        entry.CurrentValues["CreatedBy"] ??= "system";
+                    if (_dateTimeProvider != null) entry.Entity.CreatedAt = _dateTimeProvider.VietnameseTimeNow;
+                    entry.Entity.CreatedBy = string.IsNullOrEmpty(entry.Entity.CreatedBy) 
+                        ? userName 
+                        : entry.Entity.CreatedBy;
                     break;
+
                 case EntityState.Modified:
-                    if (entry.Properties.Any(p => p.Metadata.Name == "UpdatedAt"))
-                        entry.CurrentValues["UpdatedAt"] = DateTime.UtcNow;
-                    if (entry.Properties.Any(p => p.Metadata.Name == "UpdatedBy"))
-                        entry.CurrentValues["UpdatedBy"] ??= "system";
+                    entry.Entity.UpdatedAt = _dateTimeProvider?.VietnameseTimeNow;
+                    entry.Entity.UpdatedBy = string.IsNullOrEmpty(entry.Entity.UpdatedBy) 
+                        ? userName 
+                        : entry.Entity.UpdatedBy;
                     break;
             }
         }

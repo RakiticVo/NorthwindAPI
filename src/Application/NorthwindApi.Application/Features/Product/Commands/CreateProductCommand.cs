@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Windows.Input;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
@@ -27,7 +28,7 @@ internal class CreateProductCommandHandler(
             await crudService.AddAsync(product, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             var productDto = mapper.Map<ProductDto>(product);
-            return new ApiResponse(201, "Product created successfully", productDto);
+            return new ApiResponse(StatusCodes.Status201Created, "Product created successfully", productDto);
         }
     }
 }

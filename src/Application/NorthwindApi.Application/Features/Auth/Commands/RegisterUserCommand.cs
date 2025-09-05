@@ -10,10 +10,7 @@ using NorthwindApi.Infrastructure.Security;
 
 namespace NorthwindApi.Application.Features.Auth.Commands;
 
-public record RegisterUserCommand(RegisterRequest RegisterRequest) : ICommand<ApiResponse>
-{
-    public RegisterRequest RegisterRequest { get; set; } = RegisterRequest;
-}
+public record RegisterUserCommand(RegisterRequest RegisterRequest) : ICommand<ApiResponse>;
 
 internal class RegisterAuthCommandHandler(
     ICrudService<User, int> crudService,

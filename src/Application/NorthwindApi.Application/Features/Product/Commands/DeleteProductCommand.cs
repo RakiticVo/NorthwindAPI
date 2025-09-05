@@ -1,4 +1,5 @@
-﻿using NorthwindApi.Application.Abstractions;
+﻿using Microsoft.AspNetCore.Http;
+using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
 
@@ -16,13 +17,13 @@ internal class DeleteProductCommandHandler(
         var product = await crudService.GetByIdAsync(command.Id);
         if (product == null)
         {
-            return new ApiResponse(404, "Product not found");
+            return new ApiResponse(StatusCodes.Status404NotFound, "Product not found");
         }
         using (await unitOfWork.BeginTransactionAsync(cancellationToken: cancellationToken))
         {
             await crudService.DeleteAsync(product, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
-            return new ApiResponse(200, "Product deleted successfully");
+            return new ApiResponse(StatusCodes.Status200OK, "Product deleted successfully");
         }
     }
 }

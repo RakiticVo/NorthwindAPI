@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Queries;
@@ -20,7 +21,7 @@ internal class GetProductByIdHandler(
     {
         var response = await crudService.GetByIdAsync(query.ProductId);
         return response == null 
-            ? new ApiResponse(404, "Product not found") 
-            : new ApiResponse(200, "Get product by id successfully", mapper.Map<ProductDto>(response));
+            ? new ApiResponse(StatusCodes.Status404NotFound, "Product not found") 
+            : new ApiResponse(StatusCodes.Status200OK, "Get product by id successfully", mapper.Map<ProductDto>(response));
     }
 }

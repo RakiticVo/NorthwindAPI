@@ -7,27 +7,31 @@ using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Application.Features.Auth.Commands;
 
-public class LogoutCommand : ICommand<ApiResponse> { }
+public record LogoutCommand(int UserId, string DeviceType) : ICommand<ApiResponse>;
 
 internal class LogoutAuthCommandHandler(
-    ICrudService<User, int> crudService,
-    IUnitOfWork unitOfWork,
-    IHttpContextAccessor httpContextAccessor
+    ICrudService<User, int> userCrudService,
+    ICrudService<UserToken, int> userTokenCrudService,
+    IRepository<UserToken, int> userTokenRepository,
+    IUnitOfWork unitOfWork
 ) : ICommandHandler<LogoutCommand, ApiResponse>
 {
     public async Task<ApiResponse> HandleAsync(LogoutCommand command, CancellationToken cancellationToken = default)
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var userIdClaim = httpContextAccessor.HttpContext?.User?.FindFirst("user_id")?.Value;
-            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId))
-            {
-                return new ApiResponse(StatusCodes.Status401Unauthorized, "User not authenticated or invalid token");
-            }
-            var user = await crudService.GetByIdAsync(userId);
+            var user = await userCrudService.GetByIdAsync(command.UserId);
             if (user == null)
                 return new ApiResponse(StatusCodes.Status403Forbidden, "User not found");
-            await crudService.DeleteAsync(user, cancellationToken);
+            var userToken = await userTokenRepository.FirstOrDefaultAsync(
+            userTokenRepository.GetQueryableSet()
+                .Where(x => 
+                    x.DeviceType.ToLower() == command.DeviceType.ToLower() &&
+                    x.UserId == command.UserId));
+            if (userToken == null)
+                return new ApiResponse(StatusCodes.Status403Forbidden, "User are not login");
+            await userTokenCrudService.DeleteAsync(userToken, cancellationToken);
+            await unitOfWork.CommitTransactionAsync(cancellationToken);
             return new ApiResponse(StatusCodes.Status200OK, "User successfully logged out");
         }
     }

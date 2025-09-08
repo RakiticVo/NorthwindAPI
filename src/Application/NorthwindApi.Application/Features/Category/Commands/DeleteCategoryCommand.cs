@@ -19,8 +19,7 @@ internal class DeleteCategoryCommandHandler(
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
             var existingCategory = await crudService.GetByIdAsync(command.CategoryId);
-            if (existingCategory == null)
-                return new ApiResponse(StatusCodes.Status404NotFound, "Category not found!!!");
+            if (existingCategory == null) return new ApiResponse(StatusCodes.Status404NotFound, "Category not found!!!");
             await crudService.DeleteAsync(existingCategory, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             return new ApiResponse(StatusCodes.Status200OK, "Delete Category successfully!!!");

@@ -26,7 +26,7 @@ internal class UpdateCategoryCommandHandler(
             mapper.Map(command.UpdateCategoryRequest, existingCategory);
             await crudService.UpdateAsync(existingCategory, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
-            var categoryDto = mapper.Map<CategoryDto>(existingCategory);
+            var categoryDto = mapper.Map<CategoryResponse>(existingCategory);
             return new ApiResponse(StatusCodes.Status200OK, "Update Category successfully!!!", categoryDto);
         }
     }

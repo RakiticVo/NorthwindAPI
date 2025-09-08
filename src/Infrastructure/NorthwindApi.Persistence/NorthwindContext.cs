@@ -173,10 +173,15 @@ public class NorthwindContext : DbContext, IUnitOfWork
             switch (entry.State)
             {
                 case EntityState.Added:
-                    if (_dateTimeProvider != null) entry.Entity.CreatedAt = _dateTimeProvider.VietnameseTimeNow;
+                    entry.Entity.CreatedAt = _dateTimeProvider?.VietnameseTimeNow;
                     entry.Entity.CreatedBy = string.IsNullOrEmpty(entry.Entity.CreatedBy) 
                         ? userName 
                         : entry.Entity.CreatedBy;
+                    
+                    entry.Entity.UpdatedAt = _dateTimeProvider?.VietnameseTimeNow;
+                    entry.Entity.UpdatedBy = string.IsNullOrEmpty(entry.Entity.UpdatedBy) 
+                        ? userName 
+                        : entry.Entity.UpdatedBy;
                     break;
 
                 case EntityState.Modified:

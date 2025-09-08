@@ -16,7 +16,7 @@ internal class GetCategoriesHandler(
     public async Task<ApiResponse?> HandleAsync(GetCategories query, CancellationToken cancellationToken = default)
     {
         var response = await crudService.GetAsync();
-        var categories = mapper.Map<List<CategoryDto>>(response);
+        var categories = mapper.Map<List<CategoryResponse>>(response);
         return new ApiResponse(StatusCodes.Status200OK, "Get Categories successfully!!!", categories);
     }
 }

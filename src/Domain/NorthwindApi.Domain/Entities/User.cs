@@ -23,7 +23,7 @@ public partial class User : BaseEntity<int>
 
     [Column("user_role_code")]
     [StringLength(50)]
-    public string? UserRoleCode { get; set; }
+    public string UserRoleCode { get; set; } = null!;
 
     [InverseProperty("User")]
     public virtual ICollection<UserToken> UserTokens { get; set; } = new List<UserToken>();

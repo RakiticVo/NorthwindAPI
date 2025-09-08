@@ -6,6 +6,7 @@ using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
 using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Application.Features.Auth.Handler;
+using NorthwindApi.Application.Validator.Auth;
 using NorthwindApi.Domain.Entities;
 using NorthwindApi.Infrastructure.Security;
 
@@ -28,10 +29,7 @@ internal class LoginAuthCommandHandler(
         {
             var user = await userRepository.FirstOrDefaultAsync(userRepository.GetQueryableSet()
                 .Where(x => x.Username == command.LoginRequest.Username));
-            var result = AuthActionHandler.CheckUserLoginHandler(
-                user,
-                command.LoginRequest.Password
-            );
+            var result = AuthValidation.UserLoginValidate(user, command.LoginRequest.Password);
             if (result is not null) return result;
             
             var userTokenRequest = AuthActionHandler.CreateToken(tokenService, user!, command.LoginRequest.DeviceType.ToLower());

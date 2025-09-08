@@ -6,6 +6,7 @@ using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
 using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Application.Validator;
+using NorthwindApi.Application.Validator.Auth;
 using NorthwindApi.Domain.Entities;
 using NorthwindApi.Infrastructure.Security;
 
@@ -15,6 +16,7 @@ public record RegisterUserCommand(RegisterUserRequest RegisterUserRequest) : ICo
 
 internal class RegisterAuthCommandHandler(
     ICrudService<User, int> crudService,
+    IRepository<User, int> repository,
     IUnitOfWork unitOfWork,
     IMapper mapper
 ) : ICommandHandler<RegisterUserCommand, ApiResponse>
@@ -24,13 +26,16 @@ internal class RegisterAuthCommandHandler(
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
             var registerRequest = userCommand.RegisterUserRequest with { Password = PasswordHasherHandler.Hash(userCommand.RegisterUserRequest.Password) };
-            var checkValidate = await SharedValidation.RegisterUserValidation(userCommand.RegisterUserRequest, crudService);
+            var checkValidate = await AuthValidation.UserRegisterValidate(userCommand.RegisterUserRequest, crudService);
             if (checkValidate != null) return checkValidate;
             
             var user = mapper.Map<User>(registerRequest);
             await crudService.AddAsync(user, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
-            var registerResponse = mapper.Map<RegisterResponse>(user);
+            var newUser = await repository
+                .FirstOrDefaultAsync(repository.GetQueryableSet()
+                    .Where(x => x.Username == user.Username));
+            var registerResponse = mapper.Map<RegisterResponse>(newUser);
             return new ApiResponse(StatusCodes.Status201Created, "Create user successfully", registerResponse);
         }
     }

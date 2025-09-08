@@ -6,6 +6,7 @@ using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
 using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Application.Features.Auth.Handler;
+using NorthwindApi.Application.Validator.Auth;
 using NorthwindApi.Domain.Entities;
 using NorthwindApi.Infrastructure.Security;
 
@@ -30,13 +31,13 @@ internal class RefreshAccessTokenCommandHandler(
             var userName = httpContextAccessor.HttpContext?.User?.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value ?? "system"; 
             var isMobile = httpContextAccessor.HttpContext?.User?.FindFirst("isMobile")?.Value ?? "Web"; 
             var user = await userRepository.FirstOrDefaultAsync(userRepository.GetQueryableSet().Where(x => x.Username == userName));
-            var result = AuthActionHandler.CheckUserLoginHandler(user);
+            var result = AuthValidation.UserLoginValidate(user);
             if (result is not null) return result;
             
             var existingUserToken = await userTokenRepository.FirstOrDefaultAsync(
             userTokenRepository.GetQueryableSet()
                 .Where(x => x.UserId == user!.Id && x.DeviceType.ToLower() == isMobile.ToLower()));
-            var checkResult = AuthActionHandler.CheckUserTokenPrincipalAndExpiredHandler(existingUserToken, tokenService);
+            var checkResult = AuthValidation.UserTokenPrincipalAndExpiredValidate(existingUserToken, tokenService);
             if (checkResult is not null) return checkResult;
             
             var userTokenRequest = AuthActionHandler.CreateToken(tokenService, user!, isMobile);

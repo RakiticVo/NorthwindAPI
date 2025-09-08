@@ -24,7 +24,7 @@ internal class LogoutAuthCommandHandler(
             var userId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("user_id")?.Value ?? "0");
             var isMobile = httpContextAccessor.HttpContext?.User?.FindFirst("isMobile")?.Value ?? "Web"; 
             var user = await userCrudService.GetByIdAsync(userId);
-            if (user == null) return new ApiResponse(StatusCodes.Status403Forbidden, "User not found");
+            if (user == null) return new ApiResponse(StatusCodes.Status404NotFound, "User not found");
             
             var userToken = await userTokenRepository.FirstOrDefaultAsync(
             userTokenRepository.GetQueryableSet()

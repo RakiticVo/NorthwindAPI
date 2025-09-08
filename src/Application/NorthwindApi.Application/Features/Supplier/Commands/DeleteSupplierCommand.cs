@@ -1,0 +1,31 @@
+﻿using System.Data;
+using Microsoft.AspNetCore.Http;
+using NorthwindApi.Application.Abstractions;
+using NorthwindApi.Application.Common;
+using NorthwindApi.Application.Common.Commands;
+
+namespace NorthwindApi.Application.Features.Supplier.Commands;
+
+public record DeleteSupplierCommand(int SupplierId) : ICommand<ApiResponse>;
+
+internal class DeleteSupplierCommandHandler(
+    ICrudService<Domain.Entities.Supplier, int> crudService,
+    IUnitOfWork unitOfWork
+) : ICommandHandler<DeleteSupplierCommand, ApiResponse>
+{
+    public async Task<ApiResponse> HandleAsync(DeleteSupplierCommand command, CancellationToken cancellationToken = default)
+    {
+        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        {
+            var supplier = await crudService.GetByIdAsync(command.SupplierId);
+            if (supplier == null)
+            {
+                return new ApiResponse(StatusCodes.Status404NotFound, "Supplier not found");
+            }
+
+            await crudService.DeleteAsync(supplier, cancellationToken);
+            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            return new ApiResponse(StatusCodes.Status200OK, "Supplier deleted successfully"); 
+        }
+    }
+}

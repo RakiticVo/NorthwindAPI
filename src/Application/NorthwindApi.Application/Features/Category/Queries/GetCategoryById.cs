@@ -17,7 +17,7 @@ internal class GetCategoriesByIdHandler(
     {
         var response = await crudService.GetByIdAsync(query.CategoryId);
         if(response == null) return new ApiResponse(StatusCodes.Status404NotFound, "Category not found!!!");
-        var category = mapper.Map<CategoryDto>(response);
+        var category = mapper.Map<CategoryResponse>(response);
         return new ApiResponse(StatusCodes.Status200OK, "Get Category by Id successfully!!!", category);
     }
 }

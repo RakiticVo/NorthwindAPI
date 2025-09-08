@@ -3,14 +3,25 @@
 /// <summary>
 /// Category Response
 /// </summary>
-public record CreateCategoryRequest(string CategoryName, string? Description);
+public record CreateCategoryRequest
+{
+    public string CategoryName { get; init; } = null!;
+    public string? Description { get; init; }
+}
 
-public record UpdateCategoryRequest(int CategoryId, string CategoryName, string? Description);
+public record UpdateCategoryRequest
+{
+    public int CategoryId { get; init; }
+    public string CategoryName { get; init; } = null!;
+    public string? Description { get; init; }
+}
 
 /// <summary>
 /// Category Response
 /// </summary>
-public record CategoryDto(
-    int Id,
-    string CategoryName,
-    string? Description);
+public record CategoryResponse
+{
+    public int CategoryId { get; init; }
+    public string CategoryName { get; init; } = null!;
+    public string? Description { get; init; }
+}

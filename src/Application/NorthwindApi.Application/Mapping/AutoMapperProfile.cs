@@ -2,6 +2,7 @@
 using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Application.DTOs.Category;
 using NorthwindApi.Application.DTOs.Product;
+using NorthwindApi.Application.DTOs.Supplier;
 using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Application.Mapping;
@@ -12,9 +13,6 @@ public class AutoMapperProfile : Profile
     {
         // Mapping cho Auth
         CreateMap<RegisterUserRequest, User>()
-            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
-            .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-            .ForMember(dest => dest.UserRoleCode, opt => opt.MapFrom(src => src.RoleCode))
             .ForMember(dest => dest.HashedPassword, opt => opt.MapFrom(src => src.Password))
             .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => "admin"))
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
@@ -22,27 +20,31 @@ public class AutoMapperProfile : Profile
         CreateMap<LoginRequest, User>();
         CreateMap<UserTokenRequest, UserToken>()
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
-        CreateMap<UpdateUserRequest, User>();
             
         // Mapping cho Product
-        CreateMap<Product, ProductDto>()
+        CreateMap<Product, ProductResponse>()
             .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category != null ? src.Category.CategoryName : null))
+            .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.Supplier != null ? src.Supplier.CompanyName : null))
             .ReverseMap();
         CreateMap<CreateProductRequest, Product>()
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore()); // bỏ qua khi create
         CreateMap<UpdateProductRequest, Product>()
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore()); // bỏ qua khi update
 
-        // Mapping cho các Entity và DTO khác
-        CreateMap<Category, CategoryDto>().ReverseMap();
+        // Mapping cho Category
+        CreateMap<Category, CategoryResponse>().ReverseMap();
         CreateMap<CreateCategoryRequest, Category>()
             .ForMember(dest => dest.Picture, opt => opt.Ignore())
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
         CreateMap<UpdateCategoryRequest, Category>()
             .ForMember(dest => dest.Picture, opt => opt.Ignore())
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
-        // CreateMap<Supplier, SupplierDto>().ReverseMap();
-        // CreateMap<CreateSupplierRequest, Supplier>();
-        // CreateMap<UpdateSupplierRequest, Supplier>();
+       
+        // Mapping cho Supplier
+        CreateMap<Supplier, SupplierResponse>().ReverseMap();
+        CreateMap<CreateSupplierRequest, Supplier>()
+            .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
+        CreateMap<UpdateSupplierRequest, Supplier>()
+            .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
     }
 }

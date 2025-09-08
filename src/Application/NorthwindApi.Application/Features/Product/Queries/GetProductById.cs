@@ -19,6 +19,6 @@ internal class GetProductByIdHandler(
         var response = await crudService.GetByIdAsync(query.ProductId);
         return response == null 
             ? new ApiResponse(StatusCodes.Status404NotFound, "Product not found") 
-            : new ApiResponse(StatusCodes.Status200OK, "Get product by id successfully", mapper.Map<ProductDto>(response));
+            : new ApiResponse(StatusCodes.Status200OK, "Get product by id successfully", mapper.Map<ProductResponse>(response));
     }
 }

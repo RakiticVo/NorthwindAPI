@@ -837,3 +837,373 @@ Query:
 ===== RESPONSE =====
 Status Code: 200
 ====================
+===== REQUEST =====
+Time: 2025-09-08 14:27:02
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:27:19
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:28:06
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user3",
+  "email": "user3@northwinddemo.com",
+  "password": "user3@123123",
+  "userRoleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:30:21
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user4",
+  "email": "user4@northwinddemo.com",
+  "password": "user4@123123",
+  "userRoleCode": "user"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 14:30:21
+Message: Attempted to invoke a deleted method implementation. This can happen when a method is deleted or its name or signature is changed while the application is running.
+StackTrace:    at NorthwindApi.Application.Features.Auth.Commands.RegisterAuthCommandHandler..ctor(ICrudService`2 crudService, IUnitOfWork unitOfWork, CategoryDto mapper)
+   at InvokeStub_RegisterAuthCommandHandler..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Register(RegisterUserRequest registerUserRequest) in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\AuthController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 14:31:27
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user4",
+  "email": "user4@northwinddemo.com",
+  "password": "user4@123123",
+  "userRoleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:34:33
+Method: POST
+Path: /api/Products/create-new
+Body: {
+  "productName": "Ikura",
+  "supplierId": 4,
+  "categoryId": 8,
+  "quantityPerUnit": "12 - 200 ml jars",
+  "unitPrice": 31.00,
+  "unitsInStock": 31,
+  "unitsOnOrder": 0,
+  "reorderLevel": 0,
+  "discontinued": false
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:35:23
+Method: POST
+Path: /api/Products/create-new
+Body: {
+  "productName": "Boston Crab Meat",
+  "quantityPerUnit": "24 - 4 oz tins",
+  "unitPrice": 18.40,
+  "unitsInStock": 123,
+  "unitsOnOrder": 0,
+  "reorderLevel": 30,
+  "discontinued": false
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:36:31
+Method: POST
+Path: /api/Products/create-new
+Body: {
+    "productName": "Nord-Ost Matjeshering",
+    "quantityPerUnit": "10 - 200 g glasses",
+    "unitPrice": 25.00,
+    "unitsInStock": 40,
+    "unitsOnOrder": 0,
+    "reorderLevel": 5,
+    "discontinued": false
+  }
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 15:20:50
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 15:21:21
+Method: DELETE
+Path: /api/Auth/delete/15
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 17:08:04
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 17:08:28
+Method: GET
+Path: /api/Suppliers/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 17:10:28
+Method: GET
+Path: /api/Products/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 17:11:05
+Method: GET
+Path: /api/Suppliers/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 17:11:49
+Method: GET
+Path: /api/Suppliers/get/27
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 17:12:26
+Method: POST
+Path: /api/Suppliers/create-new
+Body: {
+  "companyName": "Blue Ocean Exports",
+  "contactName": "Nguyễn Minh Hải",
+  "contactTitle": "Export Manager",
+  "address": "12A Trần Phú",
+  "city": "Nha Trang",
+  "region": "Khánh Hòa",
+  "postalCode": "650000",
+  "country": "Vietnam",
+  "phone": "+84-258-3824567",
+  "fax": "+84-258-3824568",
+  "homePage": "http://www.blueoceanexports.vn"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 17:13:15
+Method: PUT
+Path: /api/Suppliers/update
+Body: {
+  "id": 30,
+  "companyName": "Vin Rouge International",
+  "contactName": "Jean-Luc Moreau",
+  "contactTitle": "Purchasing Director",
+  "address": "45 Rue de Bordeaux",
+  "city": "Bordeaux",
+  "region": "Nouvelle-Aquitaine",
+  "postalCode": "33000",
+  "country": "France",
+  "phone": "+33-5-5689-4521",
+  "fax": "+33-5-5689-4522",
+  "homePage": "http://www.vinrouge-intl.fr"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 17:15:21
+Method: PUT
+Path: /api/Suppliers/update
+Body: {
+  "id": 30,
+  "companyName": "Vin Rouge International",
+  "contactName": "Jean-Luc Moreau",
+  "contactTitle": "Purchasing Director",
+  "address": "45 Rue de Bordeaux",
+  "city": "Bordeaux",
+  "region": "Nouvelle-Aquitaine",
+  "postalCode": "33000",
+  "country": "France",
+  "phone": "+33-5-5689-4521",
+  "fax": "+33-5-5689-4522",
+  "homePage": "http://www.vinrouge-intl.fr"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 17:15:21
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Persistence\NorthwindContext.cs:line 196
+   at NorthwindApi.Application.Common.CrudService`2.UpdateAsync(T entity, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Features.Supplier.Commands.UpdateSupplierCommandHandler.HandleAsync(UpdateSupplierCommand command, CancellationToken cancellationToken)
+   at CallSite.Target(Closure, CallSite, Object)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.SuppliersController.UpdateSupplier(UpdateSupplierRequest request) in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\SuppliersController.cs:line 40
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 17:18:16
+Method: PUT
+Path: /api/Suppliers/update
+Body: {
+  "id": 30,
+  "companyName": "Vin Rouge International",
+  "contactName": "Jean-Luc Moreau",
+  "contactTitle": "Purchasing Director",
+  "address": "45 Rue de Bordeaux",
+  "city": "Bordeaux",
+  "region": "Nouvelle-Aquitaine",
+  "postalCode": "33000",
+  "country": "France",
+  "phone": "+33-5-5689-4521",
+  "fax": "+33-5-5689-4522",
+  "homePage": "http://www.vinrouge-intl.fr"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 17:18:31
+Method: GET
+Path: /api/Suppliers/get/30
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================

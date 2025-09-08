@@ -7,10 +7,7 @@ using NorthwindApi.Application.DTOs.Product;
 
 namespace NorthwindApi.Application.Features.Product.Queries;
 
-public record GetProductById(int ProductId) : IQuery<ApiResponse>
-{
-    public int ProductId { get; set; } = ProductId;
-}
+public record GetProductById(int ProductId) : IQuery<ApiResponse>;
 
 internal class GetProductByIdHandler(
     ICrudService<Domain.Entities.Product, int> crudService,

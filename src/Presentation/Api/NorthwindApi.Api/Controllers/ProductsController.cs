@@ -13,40 +13,35 @@ namespace NorthwindApi.Api.Controllers;
 [Authorize]
 public class ProductsController(Dispatcher dispatcher) : ControllerBase
 {
-    // GET: api/products
-    [HttpGet]
+    [HttpGet("get-all")]
     public async Task<IActionResult> GetProducts()
     {
         var data = await dispatcher.DispatchAsync(new GetProducts());
         return this.ReturnActionHandler(data);
     }
-
-    // GET: api/products/5
-    [HttpGet("{id:int}")]
+    
+    [HttpGet("get/{id:int}")]
     public async Task<IActionResult> GetProduct(int id)
     {
         var data = await dispatcher.DispatchAsync(new GetProductById(id));
         return this.ReturnActionHandler(data);
     }
-
-    // POST: api/products
-    [HttpPost]
-    public async Task<IActionResult> CreateProduct(CreateProductRequest request)
+    
+    [HttpPost("create-new")]
+    public async Task<IActionResult> CreateProduct([FromBody]CreateProductRequest request)
     {
         var data = await dispatcher.DispatchAsync(new CreateProductCommand(request));
         return this.ReturnActionHandler(data);
     }
 
-    // PUT: api/products/5
-    [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdateProduct(int id, UpdateProductRequest request)
+    [HttpPut("update")]
+    public async Task<IActionResult> UpdateProduct([FromBody]UpdateProductRequest request)
     {
-        var data = await dispatcher.DispatchAsync(new UpdateProductCommand(id, request));
+        var data = await dispatcher.DispatchAsync(new UpdateProductCommand(request));
         return this.ReturnActionHandler(data);
     }
-
-    // DELETE: api/products/5
-    [HttpDelete("{id:int}")]
+    
+    [HttpDelete("delete/{id:int}")]
     public async Task<IActionResult> DeleteProduct(int id)
     {
        var data = await dispatcher.DispatchAsync(new DeleteProductCommand(id));

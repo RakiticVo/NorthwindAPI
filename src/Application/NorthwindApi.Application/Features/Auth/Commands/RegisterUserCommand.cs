@@ -5,12 +5,13 @@ using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
 using NorthwindApi.Application.DTOs.Auth;
+using NorthwindApi.Application.Validator;
 using NorthwindApi.Domain.Entities;
 using NorthwindApi.Infrastructure.Security;
 
 namespace NorthwindApi.Application.Features.Auth.Commands;
 
-public record RegisterUserCommand(RegisterRequest RegisterRequest) : ICommand<ApiResponse>;
+public record RegisterUserCommand(RegisterUserRequest RegisterUserRequest) : ICommand<ApiResponse>;
 
 internal class RegisterAuthCommandHandler(
     ICrudService<User, int> crudService,
@@ -22,7 +23,10 @@ internal class RegisterAuthCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var registerRequest = userCommand.RegisterRequest with { Password = PasswordHasherHandler.Hash(userCommand.RegisterRequest.Password) };
+            var registerRequest = userCommand.RegisterUserRequest with { Password = PasswordHasherHandler.Hash(userCommand.RegisterUserRequest.Password) };
+            var checkValidate = await SharedValidation.RegisterUserValidation(userCommand.RegisterUserRequest, crudService);
+            if (checkValidate != null) return checkValidate;
+            
             var user = mapper.Map<User>(registerRequest);
             await crudService.AddAsync(user, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);

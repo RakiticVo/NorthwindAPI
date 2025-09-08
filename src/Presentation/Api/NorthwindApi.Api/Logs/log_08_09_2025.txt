@@ -1,0 +1,839 @@
+===== REQUEST =====
+Time: 2025-09-08 09:09:12
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 09:09:37
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "Web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 09:12:17
+Method: GET
+Path: /api/Categories
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-08 09:12:36
+Method: GET
+Path: /api/Categories
+Body: 
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 09:12:36
+Message: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[NorthwindApi.Domain.Entities.Category, NorthwindApi.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[NorthwindApi.Application.DTOs.Category.CategoryDto, NorthwindApi.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+StackTrace:    at lambda_method441(Closure, Object, List`1, ResolutionContext)
+   at NorthwindApi.Application.Features.Category.Queries.GetCategoriesHandler.HandleAsync(GetCategories query, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Category\Queries\GetCategories.cs:line 19
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](IQuery`1 query, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.CategoriesController.GetProducts() in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\CategoriesController.cs:line 19
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 09:22:13
+Method: GET
+Path: /api/Categories
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 09:27:34
+Method: GET
+Path: /api/Categories/5
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 09:41:26
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 09:41:27
+Message: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[NorthwindApi.Domain.Entities.Product, NorthwindApi.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[NorthwindApi.Application.DTOs.Product.ProductDto, NorthwindApi.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+StackTrace:    at lambda_method394(Closure, Object, List`1, ResolutionContext)
+   at NorthwindApi.Application.Features.Product.Queries.GetProductsHandler.HandleAsync(GetProducts query, CancellationToken cancellationToken)
+   at CallSite.Target(Closure, CallSite, Object)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](IQuery`1 query, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.ProductsController.GetProducts() in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\ProductsController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 09:53:33
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 09:53:36
+Message: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[NorthwindApi.Domain.Entities.Product, NorthwindApi.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[NorthwindApi.Application.DTOs.Product.ProductDto, NorthwindApi.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+StackTrace:    at lambda_method347(Closure, Object, List`1, ResolutionContext)
+   at NorthwindApi.Application.Features.Product.Queries.GetProductsHandler.HandleAsync(GetProducts query, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Product\Queries\GetProducts.cs:line 19
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](IQuery`1 query, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.ProductsController.GetProducts() in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\ProductsController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 09:55:08
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 09:55:09
+Message: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[NorthwindApi.Domain.Entities.Product, NorthwindApi.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[NorthwindApi.Application.DTOs.Product.ProductDto, NorthwindApi.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+StackTrace:    at lambda_method347(Closure, Object, List`1, ResolutionContext)
+   at NorthwindApi.Application.Features.Product.Queries.GetProductsHandler.HandleAsync(GetProducts query, CancellationToken cancellationToken)
+   at CallSite.Target(Closure, CallSite, Object)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](IQuery`1 query, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.ProductsController.GetProducts() in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\ProductsController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 09:55:48
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 09:56:10
+Method: GET
+Path: /api/Categories
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:01:26
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:03:53
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:03:55
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:05:17
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:05:52
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:06:04
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:07:10
+Method: GET
+Path: /api/Categories
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:08:06
+Method: GET
+Path: /api/Categories
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:08:16
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:09:38
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:11:15
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:12:04
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 10:12:06
+Message: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[NorthwindApi.Domain.Entities.Product, NorthwindApi.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[NorthwindApi.Application.DTOs.Product.ProductDto, NorthwindApi.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+StackTrace:    at lambda_method347(Closure, Object, List`1, ResolutionContext)
+   at NorthwindApi.Application.Features.Product.Queries.GetProductsHandler.HandleAsync(GetProducts query, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Product\Queries\GetProducts.cs:line 24
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](IQuery`1 query, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.ProductsController.GetProducts() in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\ProductsController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 10:13:42
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:20:27
+Method: GET
+Path: /api/Products/59
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:20:53
+Method: GET
+Path: /api/Categories/9
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:20:58
+Method: GET
+Path: /api/Categories/7
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:39:10
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "Web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:39:40
+Method: POST
+Path: /api/Categories
+Body: {
+  "categoryName": "Test",
+  "description": "Test123456"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:43:15
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "Web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:43:32
+Method: POST
+Path: /api/Categories
+Body: {
+  "categoryName": "Test",
+  "description": "Test123456"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:54:44
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 10:55:19
+Method: PUT
+Path: /api/Categories/9
+Body: {
+  "categoryName": "test2",
+  "description": "test23457"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 10:55:19
+Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UpdateCategoryCommand -> Category
+NorthwindApi.Application.Features.Category.Commands.UpdateCategoryCommand -> NorthwindApi.Domain.Entities.Category
+StackTrace:    at lambda_method359(Closure, UpdateCategoryCommand, Category, ResolutionContext)
+   at NorthwindApi.Application.Features.Category.Commands.UpdateCategoryCommandHandler.HandleAsync(UpdateCategoryCommand command, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Category\Commands\UpdateCategoryCommand.cs:line 26
+   at CallSite.Target(Closure, CallSite, Object)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.CategoriesController.UpdateCategory(Int32 id, UpdateCategoryRequest updateCategoryRequest) in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\CategoriesController.cs:line 46
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 10:56:28
+Method: PUT
+Path: /api/Categories/9
+Body: {
+  "categoryName": "test2",
+  "description": "test23457"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 10:56:28
+Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UpdateCategoryRequest -> Category
+NorthwindApi.Application.DTOs.Category.UpdateCategoryRequest -> NorthwindApi.Domain.Entities.Category
+StackTrace:    at lambda_method375(Closure, UpdateCategoryRequest, Category, ResolutionContext)
+   at NorthwindApi.Application.Features.Category.Commands.UpdateCategoryCommandHandler.HandleAsync(UpdateCategoryCommand command, CancellationToken cancellationToken)
+   at CallSite.Target(Closure, CallSite, Object)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.CategoriesController.UpdateCategory(Int32 id, UpdateCategoryRequest updateCategoryRequest) in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\CategoriesController.cs:line 46
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 10:57:32
+Method: PUT
+Path: /api/Categories/9
+Body: {
+  "categoryName": "test2",
+  "description": "test23457"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 10:57:34
+Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UpdateCategoryRequest -> Category
+NorthwindApi.Application.DTOs.Category.UpdateCategoryRequest -> NorthwindApi.Domain.Entities.Category
+StackTrace:    at lambda_method102(Closure, UpdateCategoryRequest, Category, ResolutionContext)
+   at NorthwindApi.Application.Features.Category.Commands.UpdateCategoryCommandHandler.HandleAsync(UpdateCategoryCommand command, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Category\Commands\UpdateCategoryCommand.cs:line 26
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.CategoriesController.UpdateCategory(Int32 id, UpdateCategoryRequest updateCategoryRequest) in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\CategoriesController.cs:line 46
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 10:58:31
+Method: PUT
+Path: /api/Categories/9
+Body: {
+  "categoryName": "test2",
+  "description": "test23457"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-08 10:58:31
+Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UpdateCategoryRequest -> Category
+NorthwindApi.Application.DTOs.Category.UpdateCategoryRequest -> NorthwindApi.Domain.Entities.Category
+StackTrace:    at lambda_method102(Closure, UpdateCategoryRequest, Category, ResolutionContext)
+   at NorthwindApi.Application.Features.Category.Commands.UpdateCategoryCommandHandler.HandleAsync(UpdateCategoryCommand command, CancellationToken cancellationToken)
+   at CallSite.Target(Closure, CallSite, Object)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.CategoriesController.UpdateCategory(Int32 id, UpdateCategoryRequest updateCategoryRequest) in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\CategoriesController.cs:line 46
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-08 10:58:58
+Method: PUT
+Path: /api/Categories/9
+Body: {
+  "categoryName": "test2",
+  "description": "test23457"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 11:18:05
+Method: DELETE
+Path: /api/Categories/9
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-08 11:39:03
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 11:39:23
+Method: PUT
+Path: /api/Auth/refresh-token
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 11:57:36
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 12:01:22
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 13:18:00
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 13:19:10
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user1",
+  "email": "user1@northwinddemo.com",
+  "password": "user@123123",
+  "roleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-08 13:19:15
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user2",
+  "email": "user1@northwinddemo.com",
+  "password": "user@123123",
+  "roleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-08 13:19:26
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user2",
+  "email": "user2@northwinddemo.com",
+  "password": "user@123123",
+  "roleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 13:19:59
+Method: DELETE
+Path: /api/Auth/delete/12
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 13:20:10
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user2",
+  "email": "user2@northwinddemo.com",
+  "password": "user2@123123",
+  "roleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:14:50
+Method: GET
+Path: /api/Categories/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:15:09
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user2",
+  "password": "user2@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:15:26
+Method: GET
+Path: /api/Categories/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:15:45
+Method: POST
+Path: /api/Categories/create-new
+Body: {
+  "categoryName": "test1",
+  "description": "test123456"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:16:06
+Method: PUT
+Path: /api/Categories/update
+Body: {
+  "categoryId": 10,
+  "categoryName": "test3",
+  "description": "test345678"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 14:16:15
+Method: GET
+Path: /api/Categories/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================

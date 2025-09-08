@@ -9,18 +9,21 @@ using NorthwindApi.Infrastructure.Security;
 
 namespace NorthwindApi.Application.Features.Auth.Commands;
 
-public record UpdatePasswordCommand(int UserId, string UserPassword) : ICommand<ApiResponse>;
+public record UpdatePasswordCommand(string UserPassword) : ICommand<ApiResponse>;
 
 internal class UpdatePasswordCommandHandler(
     ICrudService<User, int> crudService,
-    IUnitOfWork unitOfWork
+    IUnitOfWork unitOfWork,
+    IHttpContextAccessor httpContextAccessor
 ) : ICommandHandler<UpdatePasswordCommand, ApiResponse>
 {
     public async Task<ApiResponse> HandleAsync(UpdatePasswordCommand command, CancellationToken cancellationToken = default)
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var user = await crudService.GetByIdAsync(command.UserId);
+            var userId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("user_id")?.Value ?? "0");
+            if (userId == 0) return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
+            var user = await crudService.GetByIdAsync(userId);
             if (user == null) return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
             if (PasswordHasherHandler.Verify(command.UserPassword, user.HashedPassword))
                 return new ApiResponse(StatusCodes.Status403Forbidden, "Duplicated Password!!!");

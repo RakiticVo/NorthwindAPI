@@ -34,12 +34,12 @@ internal class LoginAuthCommandHandler(
             );
             if (result is not null) return result;
             
-            var userTokenRequest = AuthActionHandler.CreateToken(tokenService, user!, command.LoginRequest.DeviceType);
+            var userTokenRequest = AuthActionHandler.CreateToken(tokenService, user!, command.LoginRequest.DeviceType.ToLower());
             var userToken = mapper.Map<UserToken>(userTokenRequest);
             var existingUserToken = await userTokenRepository.FirstOrDefaultAsync(
             userTokenRepository.GetQueryableSet()
                 .Where(x => x.UserId == user!.Id 
-                    && x.DeviceType == command.LoginRequest.DeviceType));
+                    && x.DeviceType.ToLower() == command.LoginRequest.DeviceType.ToLower()));
             if (existingUserToken == null) await crudService.AddAsync(userToken, cancellationToken);
             else 
             {

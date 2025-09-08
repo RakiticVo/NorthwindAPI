@@ -21,13 +21,11 @@ internal class DeleteUserCommandHandler(
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
             var user = await crudService.GetByIdAsync(command.UserId);
-            if (user == null)
-                return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
+            if (user == null) return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
 
             await crudService.DeleteAsync(user, cancellationToken);
             var userTokens = await userTokenRepository
-                .ToListAsync(
-                userTokenRepository.GetQueryableSet()
+                .ToListAsync(userTokenRepository.GetQueryableSet()
                     .Where(x => x.UserId == command.UserId));
             if (userTokens.Count >= 0)
             {

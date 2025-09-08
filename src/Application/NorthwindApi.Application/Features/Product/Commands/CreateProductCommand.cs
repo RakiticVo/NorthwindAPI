@@ -16,6 +16,7 @@ public record CreateProductCommand(CreateProductRequest CreateProductRequest) : 
 
 internal class CreateProductCommandHandler(
     ICrudService<Domain.Entities.Product, int> crudService,
+    IRepository<Domain.Entities.Product, int> repository,
     IUnitOfWork unitOfWork,
     IMapper mapper
 ) : ICommandHandler<CreateProductCommand, ApiResponse>
@@ -27,7 +28,10 @@ internal class CreateProductCommandHandler(
             var product = mapper.Map<Domain.Entities.Product>(command.CreateProductRequest);
             await crudService.AddAsync(product, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
-            var productDto = mapper.Map<ProductDto>(product);
+            var newProduct = await repository
+                .FirstOrDefaultAsync(repository.GetQueryableSet()
+                    .Where(x => x.ProductName == product.ProductName));
+            var productDto = mapper.Map<ProductDto>(newProduct);
             return new ApiResponse(StatusCodes.Status201Created, "Product created successfully", productDto);
         }
     }

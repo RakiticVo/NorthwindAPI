@@ -1,0 +1,1099 @@
+===== REQUEST =====
+Time: 2025-09-05 11:02:09
+Method: GET
+Path: /
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:22:06
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:26:42
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:32:16
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:33:26
+Method: POST
+Path: /api/Auth/refresh-token
+Body: {
+  "username": "admin",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:35:08
+Method: POST
+Path: /api/Auth/refresh-token
+Body: {
+  "username": "admin",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:36:07
+Method: POST
+Path: /api/Auth/refresh-token
+Body: {
+  "username": "admin",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:37:07
+Method: POST
+Path: /api/Auth/refresh-token
+Body: {
+  "username": "admin",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:37:29
+Method: POST
+Path: /api/Auth/refresh-token
+Body: {
+  "username": "admin",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:45:56
+Method: POST
+Path: /api/Auth/update-password
+Body: 
+Query: ?id=9&userPassword=admin%40123123
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:46:07
+Method: POST
+Path: /api/Auth/update-password
+Body: 
+Query: ?id=9&userPassword=admin%40124124
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:46:21
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:46:30
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@124124",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:46:35
+Method: POST
+Path: /api/Auth/update-password
+Body: 
+Query: ?id=9&userPassword=admin%40123123
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:46:44
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 11:58:55
+Method: POST
+Path: /api/Auth/logout
+Body: 
+Query: ?userId=9&deviceType=mobile
+===================
+***** ERROR *****
+Time: 2025-09-05 11:58:57
+Message: The LINQ expression 'DbSet<UserToken>()
+    .Where(u => u.DeviceType.Equals(
+        value: __command_DeviceType_0, 
+        comparisonType: CurrentCultureIgnoreCase) && u.UserId == __command_UserId_1)' could not be translated. Additional information: Translation of the 'string.Equals' overload with a 'StringComparison' parameter is not supported. See https://go.microsoft.com/fwlink/?linkid=2129535 for more information. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+StackTrace:    at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass12_0`1.<ExecuteAsync>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.Repository.Repository`2.FirstOrDefaultAsync[T](IQueryable`1 query) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Persistence\Repository\Repository.cs:line 41
+   at NorthwindApi.Application.Features.Auth.Commands.LogoutAuthCommandHandler.HandleAsync(LogoutCommand command, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Auth\Commands\LogoutCommand.cs:line 26
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Logout(Int32 userId, String deviceType) in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\AuthController.cs:line 66
+   at lambda_method24(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-05 12:00:53
+Method: POST
+Path: /api/Auth/logout
+Body: 
+Query: ?userId=9&deviceType=mobile
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 12:01:03
+Method: POST
+Path: /api/Auth/logout
+Body: 
+Query: ?userId=9&deviceType=mobile
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 12:01:08
+Method: POST
+Path: /api/Auth/logout
+Body: 
+Query: ?userId=9&deviceType=web
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:36:51
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:37:15
+Method: DELETE
+Path: /api/Auth/delete
+Body: 
+Query: ?userId=10
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:37:51
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-05 13:37:52
+Message: Data is Null. This method or property cannot be called on Null values.
+StackTrace:    at Microsoft.Data.SqlClient.SqlBuffer.ThrowIfNull()
+   at Microsoft.Data.SqlClient.SqlBuffer.get_DateTime()
+   at Microsoft.Data.SqlClient.SqlDataReader.GetDateTime(Int32 i)
+   at lambda_method334(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Features.Product.Queries.GetProductsHandler.<HandleAsync>b__4_0() in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Product\Queries\GetProducts.cs:line 23
+   at NorthwindApi.Infrastructure.Cache.BusinessCacheService.GetOrSetAsync[T](String key, Func`1 getItem, Nullable`1 expiration, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Cache\BusinessCacheService.cs:line 21
+   at NorthwindApi.Application.Features.Product.Queries.GetProductsHandler.HandleAsync(GetProducts query, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Product\Queries\GetProducts.cs:line 19
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](IQuery`1 query, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.ProductsController.GetProducts() in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\ProductsController.cs:line 17
+   at lambda_method309(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-05 13:39:38
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-05 13:39:39
+Message: Data is Null. This method or property cannot be called on Null values.
+StackTrace:    at Microsoft.Data.SqlClient.SqlBuffer.ThrowIfNull()
+   at Microsoft.Data.SqlClient.SqlBuffer.get_DateTime()
+   at Microsoft.Data.SqlClient.SqlDataReader.GetDateTime(Int32 i)
+   at lambda_method48(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Features.Product.Queries.GetProductsHandler.HandleAsync(GetProducts query, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Product\Queries\GetProducts.cs:line 19
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](IQuery`1 query, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.ProductsController.GetProducts() in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\ProductsController.cs:line 17
+   at lambda_method24(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-05 13:42:06
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:44:01
+Method: POST
+Path: /api/Products
+Body: {
+  "productName": "Cà phê hòa tan G7 3in1",
+  "supplierId": 1,
+  "categoryId": 2,
+  "quantityPerUnit": "20 gói/hộp",
+  "unitPrice": 55000,
+  "unitsInStock": 120,
+  "unitsOnOrder": 30,
+  "reorderLevel": 10,
+  "discontinued": false
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:44:11
+Method: GET
+Path: /api/Products/84
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:44:17
+Method: GET
+Path: /api/Products/78
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:44:21
+Method: GET
+Path: /api/Products/77
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:44:38
+Method: PUT
+Path: /api/Products/84
+Body: {
+  "productName": "Cà phê hòa tan G7 3in1",
+  "supplierId": 1,
+  "categoryId": 2,
+  "quantityPerUnit": "20 gói/hộp",
+  "unitPrice": 60000,
+  "unitsInStock": 120,
+  "unitsOnOrder": 30,
+  "reorderLevel": 10,
+  "discontinued": false
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:44:44
+Method: GET
+Path: /api/Products/84
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:44:52
+Method: DELETE
+Path: /api/Products/84
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:45:00
+Method: GET
+Path: /api/Products/84
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 13:45:04
+Method: PUT
+Path: /api/Products/84
+Body: {
+  "productName": "Cà phê hòa tan G7 3in1",
+  "supplierId": 1,
+  "categoryId": 2,
+  "quantityPerUnit": "20 gói/hộp",
+  "unitPrice": 60000,
+  "unitsInStock": 120,
+  "unitsOnOrder": 30,
+  "reorderLevel": 10,
+  "discontinued": false
+}
+
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-05 13:45:04
+Message: Product not found
+StackTrace:    at NorthwindApi.Application.Features.Product.Commands.UpdateProductCommandHandler.HandleAsync(UpdateProductCommand command, CancellationToken cancellationToken) in D:\Workspace\.NET\NorthwindAPI\src\Application\NorthwindApi.Application\Features\Product\Commands\UpdateProductCommand.cs:line 27
+   at CallSite.Target(Closure, CallSite, Object)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.ProductsController.UpdateProduct(Int32 id, UpdateProductRequest request) in D:\Workspace\.NET\NorthwindAPI\src\Presentation\Api\NorthwindApi.Api\Controllers\ProductsController.cs:line 46
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Workspace\.NET\NorthwindAPI\src\Infrastructure\NorthwindApi.Infrastructure\Middlewares\ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-05 14:03:29
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@124124",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:03:59
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@124124",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:04:26
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@124124",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:09:57
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:20:00
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user2",
+  "email": "user2@northwinddemo@gmail.com",
+  "password": "user2@123123",
+  "roleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:22:46
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user2",
+  "email": "user2@northwinddemo.com",
+  "password": "user2@123123",
+  "roleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:23:22
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:26:11
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user2",
+  "email": "user2@northwinddemo.com",
+  "password": "user2@123123",
+  "roleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:27:00
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user2",
+  "email": "user2@northwinddemo.com",
+  "password": "user2@123123",
+  "roleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:28:03
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 400
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:28:19
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@12312",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:29:49
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user2",
+  "email": "user2@northwinddemo.com",
+  "password": "user2@123123",
+  "roleCode": "user"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:31:45
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:32:14
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:33:30
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user1",
+  "email": "user1@northwinddemo.com",
+  "password": "user1@123123"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:34:51
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user1",
+  "email": "user1@northwinddemo.com",
+  "password": "user1@123123"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:35:59
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user1",
+  "email": "user1@northwinddemo.com",
+  "password": "user1@123123"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:36:38
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 14:36:56
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user1",
+  "email": "user1@northwinddemo.com",
+  "password": "user1@123123"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:12:40
+Method: GET
+Path: /api/Products
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:31:01
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:31:19
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:32:11
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:32:23
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:32:30
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:32:48
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@124123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:33:30
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@124123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:41:38
+Method: GET
+Path: /favicon.ico
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:47:40
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 15:48:05
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 16:16:22
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-05 16:16:33
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 16:16:46
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-05 16:17:45
+Method: POST
+Path: /api/Products
+Body: {
+  "productName": "Cà phê hòa tan G7 3in1",
+  "supplierId": 1,
+  "categoryId": 2,
+  "quantityPerUnit": "20 gói/hộp",
+  "unitPrice": 55000,
+  "unitsInStock": 120,
+  "unitsOnOrder": 30,
+  "reorderLevel": 10,
+  "discontinued": false
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-05 16:18:08
+Method: POST
+Path: /api/Products
+Body: {
+  "productName": "Cà phê hòa tan G7 3in1",
+  "supplierId": 1,
+  "categoryId": 2,
+  "quantityPerUnit": "20 gói/hộp",
+  "unitPrice": 55000,
+  "unitsInStock": 120,
+  "unitsOnOrder": 30,
+  "reorderLevel": 10,
+  "discontinued": false
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-05 16:19:57
+Method: POST
+Path: /api/Products
+Body: {
+  "productName": "Cà phê hòa tan G7 3in1",
+  "supplierId": 1,
+  "categoryId": 2,
+  "quantityPerUnit": "20 gói/hộp",
+  "unitPrice": 55000,
+  "unitsInStock": 120,
+  "unitsOnOrder": 30,
+  "reorderLevel": 10,
+  "discontinued": false
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-05 16:22:16
+Method: POST
+Path: /api/Products
+Body: {
+  "productName": "Cà phê hòa tan G7 3in1",
+  "supplierId": 1,
+  "categoryId": 2,
+  "quantityPerUnit": "20 gói/hộp",
+  "unitPrice": 55000,
+  "unitsInStock": 120,
+  "unitsOnOrder": 30,
+  "reorderLevel": 10,
+  "discontinued": false
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-05 16:24:31
+Method: POST
+Path: /api/Products
+Body: {
+  "productName": "Cà phê hòa tan G7 3in1",
+  "supplierId": 1,
+  "categoryId": 2,
+  "quantityPerUnit": "20 gói/hộp",
+  "unitPrice": 55000,
+  "unitsInStock": 120,
+  "unitsOnOrder": 30,
+  "reorderLevel": 10,
+  "discontinued": false
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-05 16:25:59
+Method: POST
+Path: /api/Products
+Body: {
+  "productName": "Cà phê hòa tan G7 3in1",
+  "supplierId": 1,
+  "categoryId": 2,
+  "quantityPerUnit": "20 gói/hộp",
+  "unitPrice": 55000,
+  "unitsInStock": 120,
+  "unitsOnOrder": 30,
+  "reorderLevel": 10,
+  "discontinued": false
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================

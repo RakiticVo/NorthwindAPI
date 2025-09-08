@@ -7,29 +7,31 @@ using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Application.Features.Auth.Commands;
 
-public record LogoutCommand(int UserId, string DeviceType) : ICommand<ApiResponse>;
+public record LogoutCommand : ICommand<ApiResponse>;
 
 internal class LogoutAuthCommandHandler(
     ICrudService<User, int> userCrudService,
     ICrudService<UserToken, int> userTokenCrudService,
     IRepository<UserToken, int> userTokenRepository,
-    IUnitOfWork unitOfWork
+    IUnitOfWork unitOfWork,
+    IHttpContextAccessor httpContextAccessor
 ) : ICommandHandler<LogoutCommand, ApiResponse>
 {
     public async Task<ApiResponse> HandleAsync(LogoutCommand command, CancellationToken cancellationToken = default)
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var user = await userCrudService.GetByIdAsync(command.UserId);
-            if (user == null)
-                return new ApiResponse(StatusCodes.Status403Forbidden, "User not found");
+            var userId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("user_id")?.Value ?? "0");
+            var isMobile = httpContextAccessor.HttpContext?.User?.FindFirst("isMobile")?.Value ?? "Web"; 
+            var user = await userCrudService.GetByIdAsync(userId);
+            if (user == null) return new ApiResponse(StatusCodes.Status403Forbidden, "User not found");
+            
             var userToken = await userTokenRepository.FirstOrDefaultAsync(
             userTokenRepository.GetQueryableSet()
-                .Where(x => 
-                    x.DeviceType.ToLower() == command.DeviceType.ToLower() &&
-                    x.UserId == command.UserId));
-            if (userToken == null)
-                return new ApiResponse(StatusCodes.Status403Forbidden, "User are not login");
+                .Where(x => x.UserId == userId &&
+                    x.DeviceType.ToLower() == isMobile.ToLower()));
+            if (userToken == null) return new ApiResponse(StatusCodes.Status403Forbidden, "User are not login");
+            
             await userTokenCrudService.DeleteAsync(userToken, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             return new ApiResponse(StatusCodes.Status200OK, "User successfully logged out");

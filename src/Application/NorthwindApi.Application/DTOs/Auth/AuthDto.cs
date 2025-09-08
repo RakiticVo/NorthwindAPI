@@ -1,12 +1,26 @@
-﻿namespace NorthwindApi.Application.DTOs.Auth;
+﻿using System.ComponentModel;
+
+namespace NorthwindApi.Application.DTOs.Auth;
 
 /// <summary>
 /// Auth Request
 /// </summary>
-public record RegisterRequest(string Username, string Email, string Password, string? RoleCode = "user");
+public record RegisterUserRequest
+{
+    public string Username { get; init; } = null!;
+    public string Email { get; init; } = null!;
+    public string Password { get; init; } = null!;
+    [DefaultValue("user")]
+    public string RoleCode { get; init; } = "user";
+}
 
-public record LoginRequest(string Username, string Password, string DeviceType);
-public record RefreshTokenRequest(string Username, string DeviceType);
+public record LoginRequest
+{
+    public string Username { get; init; } = null!;
+    public string Password { get; init; } = null!;
+    [DefaultValue("web")]
+    public string DeviceType { get; init; } = "web";
+}
 
 public record UserTokenRequest
 {

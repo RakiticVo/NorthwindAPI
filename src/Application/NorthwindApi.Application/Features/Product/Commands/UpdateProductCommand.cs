@@ -8,10 +8,7 @@ using NorthwindApi.Application.DTOs.Product;
 
 namespace NorthwindApi.Application.Features.Product.Commands;
 
-public record UpdateProductCommand(int Id, UpdateProductRequest UpdateProductRequest) : ICommand<ApiResponse>
-{
-    public UpdateProductRequest UpdateProductRequest { get; set; } = UpdateProductRequest;
-}
+public record UpdateProductCommand(UpdateProductRequest UpdateProductRequest) : ICommand<ApiResponse>;
 
 internal class UpdateProductCommandHandler(
     ICrudService<Domain.Entities.Product, int> crudService,
@@ -23,9 +20,9 @@ internal class UpdateProductCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var existingProduct = await crudService.GetByIdAsync(command.Id);
-            if (existingProduct == null)
-                return new ApiResponse(StatusCodes.Status404NotFound, "Product not found");
+            var existingProduct = await crudService.GetByIdAsync(command.UpdateProductRequest.ProductId);
+            if (existingProduct == null) return new ApiResponse(StatusCodes.Status404NotFound, "Product not found");
+            
             mapper.Map(command.UpdateProductRequest, existingProduct);
             await crudService.UpdateAsync(existingProduct, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken); 

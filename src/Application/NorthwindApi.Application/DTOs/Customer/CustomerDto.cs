@@ -1,9 +1,9 @@
-﻿namespace NorthwindApi.Application.DTOs.Supplier;
+﻿namespace NorthwindApi.Application.DTOs.Customer;
 
 /// <summary>
-/// Supplier Request
+/// Customer Request
 /// </summary>
-public record CreateSupplierRequest
+public record CreateCustomerRequest
 {
     public string CompanyName { get; init; } = null!;
     public string? ContactName { get; init; }
@@ -15,12 +15,11 @@ public record CreateSupplierRequest
     public string? Country { get; init; }
     public string? Phone { get; init; }
     public string? Fax { get; init; }
-    public string? HomePage { get; init; }
 }
 
-public record UpdateSupplierRequest
+public record UpdateCustomerRequest
 {
-    public int Id { get; init; }
+    public string Id { get; init; } = null!;
     public string CompanyName { get; init; } = null!;
     public string? ContactName { get; init; }
     public string? ContactTitle { get; init; }
@@ -31,15 +30,14 @@ public record UpdateSupplierRequest
     public string? Country { get; init; }
     public string? Phone { get; init; }
     public string? Fax { get; init; }
-    public string? HomePage { get; init; }
 }
 
 /// <summary>
-/// Supplier Response
+/// Customer Response
 /// </summary>
-public record SupplierResponse
+public record CustomerResponse
 {
-    public int Id { get; init; }
+    public string Id { get; init; } = null!;
     public string CompanyName { get; init; } = null!;
     public string? ContactName { get; init; }
     public string? ContactTitle { get; init; }
@@ -50,5 +48,4 @@ public record SupplierResponse
     public string? Country { get; init; }
     public string? Phone { get; init; }
     public string? Fax { get; init; }
-    public string? HomePage { get; init; }
 }

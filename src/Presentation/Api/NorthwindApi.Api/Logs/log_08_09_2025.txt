@@ -1207,3 +1207,23 @@ Query:
 ===== RESPONSE =====
 Status Code: 200
 ====================
+===== REQUEST =====
+Time: 2025-09-08 18:00:47
+Method: GET
+Path: /api/Customers/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-08 18:01:09
+Method: GET
+Path: /api/Customers/get/SAVEA
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Application.DTOs.Category;
+using NorthwindApi.Application.DTOs.Customer;
 using NorthwindApi.Application.DTOs.Product;
 using NorthwindApi.Application.DTOs.Supplier;
 using NorthwindApi.Domain.Entities;
@@ -45,6 +46,13 @@ public class AutoMapperProfile : Profile
         CreateMap<CreateSupplierRequest, Supplier>()
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
         CreateMap<UpdateSupplierRequest, Supplier>()
+            .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
+        
+        // Mapping cho Customer
+        CreateMap<Customer, CustomerResponse>().ReverseMap();
+        CreateMap<CreateCustomerRequest, Customer>()
+            .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
+        CreateMap<UpdateCustomerRequest, Customer>()
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
     }
 }

@@ -16,13 +16,10 @@ internal class DeleteProductCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(cancellationToken: cancellationToken))
         {
-            var product = await crudService.GetByIdAsync(command.Id);
-            if (product == null)
-            {
-                return new ApiResponse(StatusCodes.Status404NotFound, "Product not found");
-            }
+            var existingProduct = await crudService.GetByIdAsync(command.Id);
+            if (existingProduct == null) return new ApiResponse(StatusCodes.Status404NotFound, "Product not found");
 
-            await crudService.DeleteAsync(product, cancellationToken);
+            await crudService.DeleteAsync(existingProduct, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             return new ApiResponse(StatusCodes.Status200OK, "Product deleted successfully");
         }

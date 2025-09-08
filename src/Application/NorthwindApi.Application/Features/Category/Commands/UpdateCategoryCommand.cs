@@ -20,7 +20,7 @@ internal class UpdateCategoryCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var existingCategory = await crudService.GetByIdAsync(command.UpdateCategoryRequest.CategoryId);
+            var existingCategory = await crudService.GetByIdAsync(command.UpdateCategoryRequest.Id);
             if (existingCategory == null) return new ApiResponse(StatusCodes.Status404NotFound, "Category not found!!!");
             
             mapper.Map(command.UpdateCategoryRequest, existingCategory);

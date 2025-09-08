@@ -27,17 +27,17 @@ internal class LoginAuthCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var user = await userRepository.FirstOrDefaultAsync(userRepository.GetQueryableSet()
+            var existingUser = await userRepository.FirstOrDefaultAsync(userRepository.GetQueryableSet()
                 .Where(x => x.Username == command.LoginRequest.Username));
-            var result = AuthValidation.UserLoginValidate(user, command.LoginRequest.Password);
+            var result = AuthValidation.UserLoginValidate(existingUser, command.LoginRequest.Password);
             if (result is not null) return result;
             
-            var userTokenRequest = AuthActionHandler.CreateToken(tokenService, user!, command.LoginRequest.DeviceType.ToLower());
+            var userTokenRequest = AuthActionHandler.CreateToken(tokenService, existingUser!, command.LoginRequest.DeviceType.ToLower());
             var userToken = mapper.Map<UserToken>(userTokenRequest);
             var existingUserToken = await userTokenRepository.FirstOrDefaultAsync(
             userTokenRepository.GetQueryableSet()
-                .Where(x => x.UserId == user!.Id 
-                    && x.DeviceType.ToLower() == command.LoginRequest.DeviceType.ToLower()));
+                .Where(x => x.UserId == existingUser!.Id && 
+                        x.DeviceType.ToLower() == command.LoginRequest.DeviceType.ToLower()));
             if (existingUserToken == null) await crudService.AddAsync(userToken, cancellationToken);
             else 
             {
@@ -48,7 +48,7 @@ internal class LoginAuthCommandHandler(
             }
 
             await unitOfWork.CommitTransactionAsync(cancellationToken);
-            var authResponse = new AuthResponse(user!.Username, userTokenRequest.AccessToken, userToken.RefreshToken);
+            var authResponse = new AuthResponse(existingUser!.Username, userTokenRequest.AccessToken, userToken.RefreshToken);
             return new ApiResponse(StatusCodes.Status200OK, "Login successfully", authResponse);
         }
     }

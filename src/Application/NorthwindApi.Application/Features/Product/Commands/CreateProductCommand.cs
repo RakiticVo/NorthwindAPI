@@ -22,15 +22,15 @@ internal class CreateProductCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var product = mapper.Map<Domain.Entities.Product>(command.CreateProductRequest);
+            var existingProduct = mapper.Map<Domain.Entities.Product>(command.CreateProductRequest);
             var products = await crudService.GetAsync();
-            if (products.Any(productItem => productItem.ProductName == product.ProductName)) 
+            if (products.Any(productItem => productItem.ProductName == existingProduct.ProductName)) 
                 return new ApiResponse(StatusCodes.Status409Conflict, "Product already exists");
-            await crudService.AddAsync(product, cancellationToken);
+            await crudService.AddAsync(existingProduct, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             var newProduct = await repository
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
-                    .Where(x => x.ProductName == product.ProductName));
+                    .Where(x => x.ProductName == existingProduct.ProductName));
             var productDto = mapper.Map<ProductResponse>(newProduct);
             return new ApiResponse(StatusCodes.Status201Created, "Product created successfully", productDto);
         }

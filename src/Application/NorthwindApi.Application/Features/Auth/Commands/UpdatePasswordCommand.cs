@@ -23,14 +23,15 @@ internal class UpdatePasswordCommandHandler(
         {
             var userId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("user_id")?.Value ?? "0");
             if (userId == 0) return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
-            var user = await crudService.GetByIdAsync(userId);
-            if (user == null) return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
-            if (PasswordHasherHandler.Verify(command.UserPassword, user.HashedPassword))
+            
+            var existingUser = await crudService.GetByIdAsync(userId);
+            if (existingUser == null) return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
+            if (PasswordHasherHandler.Verify(command.UserPassword, existingUser.HashedPassword))
                 return new ApiResponse(StatusCodes.Status403Forbidden, "Duplicated Password!!!");
         
             // Hash password mới và update
-            user.HashedPassword = PasswordHasherHandler.Hash(command.UserPassword);
-            await crudService.UpdateAsync(user, cancellationToken);
+            existingUser.HashedPassword = PasswordHasherHandler.Hash(command.UserPassword);
+            await crudService.UpdateAsync(existingUser, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             return new ApiResponse(StatusCodes.Status200OK, "Password updated successfully");
         }

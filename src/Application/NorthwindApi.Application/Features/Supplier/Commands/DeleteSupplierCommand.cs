@@ -17,13 +17,10 @@ internal class DeleteSupplierCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var supplier = await crudService.GetByIdAsync(command.SupplierId);
-            if (supplier == null)
-            {
-                return new ApiResponse(StatusCodes.Status404NotFound, "Supplier not found");
-            }
+            var existingSupplier = await crudService.GetByIdAsync(command.SupplierId);
+            if (existingSupplier == null) return new ApiResponse(StatusCodes.Status404NotFound, "Supplier not found");
 
-            await crudService.DeleteAsync(supplier, cancellationToken);
+            await crudService.DeleteAsync(existingSupplier, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             return new ApiResponse(StatusCodes.Status200OK, "Supplier deleted successfully"); 
         }

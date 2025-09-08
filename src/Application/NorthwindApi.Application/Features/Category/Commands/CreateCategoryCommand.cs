@@ -21,15 +21,15 @@ internal class CreateCategoryCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var category = mapper.Map<Domain.Entities.Category>(command.CreateCategoryRequest);
+            var existingCategory = mapper.Map<Domain.Entities.Category>(command.CreateCategoryRequest);
             var categories = await crudService.GetAsync();
-            if (categories.Any(categoryItem => categoryItem.CategoryName == category.CategoryName)) 
+            if (categories.Any(categoryItem => categoryItem.CategoryName == existingCategory.CategoryName)) 
                 return new ApiResponse(StatusCodes.Status409Conflict, "Category already exists");
-            await crudService.AddAsync(category, cancellationToken);
+            await crudService.AddAsync(existingCategory, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             var newCategory = await repository
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
-                    .Where(x => x.CategoryName == category.CategoryName));
+                    .Where(x => x.CategoryName == existingCategory.CategoryName));
             var categoryDto = mapper.Map<CategoryResponse>(newCategory);
             return new ApiResponse(StatusCodes.Status201Created, "Create Category successfully!!!", categoryDto);
         }

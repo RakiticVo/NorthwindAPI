@@ -1,7 +1,7 @@
 ﻿namespace NorthwindApi.Application.DTOs.Category;
 
 /// <summary>
-/// Category Response
+/// Category Request
 /// </summary>
 public record CreateCategoryRequest
 {
@@ -11,7 +11,7 @@ public record CreateCategoryRequest
 
 public record UpdateCategoryRequest
 {
-    public int CategoryId { get; init; }
+    public int Id { get; init; }
     public string CategoryName { get; init; } = null!;
     public string? Description { get; init; }
 }
@@ -21,7 +21,7 @@ public record UpdateCategoryRequest
 /// </summary>
 public record CategoryResponse
 {
-    public int CategoryId { get; init; }
+    public int Id { get; init; }
     public string CategoryName { get; init; } = null!;
     public string? Description { get; init; }
 }

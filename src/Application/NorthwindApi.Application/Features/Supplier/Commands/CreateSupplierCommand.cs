@@ -21,15 +21,15 @@ internal class CreateSupplierCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var supplier = mapper.Map<Domain.Entities.Supplier>(command.CreateSupplierRequest);
+            var existingSupplier = mapper.Map<Domain.Entities.Supplier>(command.CreateSupplierRequest);
             var suppliers = await crudService.GetAsync();
-            if (suppliers.Any(supplierItem => supplierItem.CompanyName == supplier.CompanyName)) 
+            if (suppliers.Any(supplierItem => supplierItem.CompanyName == existingSupplier.CompanyName)) 
                 return new ApiResponse(StatusCodes.Status409Conflict, "Supplier already exists");
-            await crudService.AddAsync(supplier, cancellationToken);
+            await crudService.AddAsync(existingSupplier, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             var newSupplier = await repository
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
-                    .Where(x => x.CompanyName == supplier.CompanyName));
+                    .Where(x => x.CompanyName == existingSupplier.CompanyName));
             var supplierDto = mapper.Map<SupplierResponse>(newSupplier);
             return new ApiResponse(StatusCodes.Status201Created, "Create Supplier successfully!!!", supplierDto);
         }

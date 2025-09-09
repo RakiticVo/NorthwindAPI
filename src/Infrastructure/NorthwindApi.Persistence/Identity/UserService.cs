@@ -1,7 +1,6 @@
 ﻿using NorthwindApi.Domain.Entities;
-using NorthwindApi.Persistence;
 
-namespace NorthwindApi.Infrastructure.Identity;
+namespace NorthwindApi.Persistence.Identity;
 
 public class UserService(NorthwindContext db) : IUserService
 {

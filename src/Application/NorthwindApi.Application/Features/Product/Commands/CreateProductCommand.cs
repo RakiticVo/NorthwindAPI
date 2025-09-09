@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Product;
 
 namespace NorthwindApi.Application.Features.Product.Commands;
@@ -22,17 +23,18 @@ internal class CreateProductCommandHandler(
     {
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
-            var existingProduct = mapper.Map<Domain.Entities.Product>(command.CreateProductRequest);
+            var product = mapper.Map<Domain.Entities.Product>(command.CreateProductRequest);
             var products = await crudService.GetAsync();
-            if (products.Any(productItem => productItem.ProductName == existingProduct.ProductName)) 
-                return new ApiResponse(StatusCodes.Status409Conflict, "Product already exists");
-            await crudService.AddAsync(existingProduct, cancellationToken);
+            if (products.Any(productItem => productItem.ProductName == product.ProductName)) 
+                return new ApiResponse(StatusCodes.Status409Conflict, "Product already exists!!!");
+            
+            await crudService.AddAsync(product, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             var newProduct = await repository
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
-                    .Where(x => x.ProductName == existingProduct.ProductName));
+                    .Where(x => x.ProductName == product.ProductName));
             var productDto = mapper.Map<ProductResponse>(newProduct);
-            return new ApiResponse(StatusCodes.Status201Created, "Product created successfully", productDto);
+            return new ApiResponse(StatusCodes.Status201Created, "Product created successfully!!!", productDto);
         }
     }
 }

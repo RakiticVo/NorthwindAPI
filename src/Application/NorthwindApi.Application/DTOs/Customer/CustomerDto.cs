@@ -1,10 +1,13 @@
-﻿namespace NorthwindApi.Application.DTOs.Customer;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace NorthwindApi.Application.DTOs.Customer;
 
 /// <summary>
 /// Customer Request
 /// </summary>
 public record CreateCustomerRequest
 {
+    public string Id { get; init; } = null!;
     public string CompanyName { get; init; } = null!;
     public string? ContactName { get; init; }
     public string? ContactTitle { get; init; }
@@ -19,6 +22,7 @@ public record CreateCustomerRequest
 
 public record UpdateCustomerRequest
 {
+    [StringLength(5)]
     public string Id { get; init; } = null!;
     public string CompanyName { get; init; } = null!;
     public string? ContactName { get; init; }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Queries;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Category;
 
 namespace NorthwindApi.Application.Features.Category.Queries;
@@ -15,8 +16,9 @@ internal class GetCategoriesHandler(
 {
     public async Task<ApiResponse?> HandleAsync(GetCategories query, CancellationToken cancellationToken = default)
     {
-        var response = await crudService.GetAsync();
-        var categories = mapper.Map<List<CategoryResponse>>(response);
-        return new ApiResponse(StatusCodes.Status200OK, "Get Categories successfully!!!", categories);
+        var categories = await crudService.GetAsync();
+        return categories.Count == 0
+            ? new ApiResponse(StatusCodes.Status404NotFound, "No Categories found!!!")
+            : new ApiResponse(StatusCodes.Status200OK, "Get Categories successfully!!!", mapper.Map<List<CategoryResponse>>(categories));
     }
 }

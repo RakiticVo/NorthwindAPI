@@ -2,7 +2,7 @@
 using Microsoft.Data.SqlClient;
 using NorthwindApi.Application.Abstractions;
 
-namespace NorthwindApi.Infrastructure.Locking;
+namespace NorthwindApi.Persistence.Locking;
 
 public sealed class SqlDistributedLock(IUnitOfWork uow) : IDistributedLock
 {

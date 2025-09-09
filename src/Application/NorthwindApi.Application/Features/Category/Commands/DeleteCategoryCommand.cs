@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
 
 namespace NorthwindApi.Application.Features.Category.Commands;
 
@@ -22,7 +23,7 @@ internal class DeleteCategoryCommandHandler(
             if (existingCategory == null) return new ApiResponse(StatusCodes.Status404NotFound, "Category not found!!!");
             await crudService.DeleteAsync(existingCategory, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
-            return new ApiResponse(StatusCodes.Status200OK, "Delete Category successfully!!!");
+            return new ApiResponse(StatusCodes.Status200OK, "Category deleted successfully!!!");
         }
     }
 }

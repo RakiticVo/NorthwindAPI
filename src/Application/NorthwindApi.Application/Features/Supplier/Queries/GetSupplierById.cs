@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Queries;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Supplier;
 
 namespace NorthwindApi.Application.Features.Supplier.Queries;
@@ -16,8 +17,8 @@ internal class GetSupplierByIdHandler(
     public async Task<ApiResponse?> HandleAsync(GetSupplierById query, CancellationToken cancellationToken = default)
     {
         var supplier = await crudService.GetByIdAsync(query.SupplierId);
-        if (supplier == null) return new ApiResponse(StatusCodes.Status404NotFound, "Supplier not found!!!");
-        var supplierDto = mapper.Map<SupplierResponse>(supplier);
-        return new ApiResponse(StatusCodes.Status200OK, "Get Suppliers successfully!!!", supplierDto);
+        return supplier == null
+        ? new ApiResponse(StatusCodes.Status404NotFound, "Supplier not found!!!")
+        : new ApiResponse(StatusCodes.Status200OK, "Get Supplier by Id successfully!!!", mapper.Map<SupplierResponse>(supplier));
     }
 }

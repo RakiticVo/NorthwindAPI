@@ -10,10 +10,10 @@ using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.DateTimes;
 using NorthwindApi.Application.Mapping;
 using NorthwindApi.Infrastructure.Cache;
-using NorthwindApi.Infrastructure.Locking;
 using NorthwindApi.Infrastructure.Security;
 using NorthwindApi.Infrastructure.Middlewares;
 using NorthwindApi.Persistence;
+using NorthwindApi.Persistence.Locking;
 using NorthwindApi.Persistence.Repository;
 
 var logger = new LoggerConfiguration()

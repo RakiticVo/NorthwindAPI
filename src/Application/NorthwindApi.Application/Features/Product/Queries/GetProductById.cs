@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Queries;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Product;
 
 namespace NorthwindApi.Application.Features.Product.Queries;
@@ -16,9 +17,9 @@ internal class GetProductByIdHandler(
 {
     public async Task<ApiResponse?> HandleAsync(GetProductById query, CancellationToken cancellationToken = default)
     {
-        var response = await crudService.GetByIdAsync(query.ProductId);
-        return response == null 
-            ? new ApiResponse(StatusCodes.Status404NotFound, "Product not found") 
-            : new ApiResponse(StatusCodes.Status200OK, "Get product by id successfully", mapper.Map<ProductResponse>(response));
+        var product = await crudService.GetByIdAsync(query.ProductId);
+        return product == null 
+            ? new ApiResponse(StatusCodes.Status404NotFound, "Product not found!!!") 
+            : new ApiResponse(StatusCodes.Status200OK, "Get Product by Id successfully", mapper.Map<ProductResponse>(product));
     }
 }

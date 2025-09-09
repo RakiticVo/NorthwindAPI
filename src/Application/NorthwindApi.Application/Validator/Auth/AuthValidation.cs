@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Common;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Domain.Entities;
 using NorthwindApi.Infrastructure.Security;

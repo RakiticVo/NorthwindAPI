@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Queries;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Customer;
 
 namespace NorthwindApi.Application.Features.Customer.Queries;
@@ -16,7 +17,8 @@ internal class GetCustomerByIdHandler(
     public async Task<ApiResponse?> HandleAsync(GetCustomerById query, CancellationToken cancellationToken = default)
     {
         var customer = await crudService.GetByIdAsync(query.CustomerId);
-        var customerDto = mapper.Map<CustomerResponse>(customer);
-        return new ApiResponse(StatusCodes.Status200OK, "Get Customer successfully!!!", customerDto);
+        return customer == null
+        ? new ApiResponse(StatusCodes.Status404NotFound, "Customer not found!!!")
+        : new ApiResponse(StatusCodes.Status200OK, "Get Customer by Id successfully!!!", mapper.Map<CustomerResponse>(customer));
     }
 }

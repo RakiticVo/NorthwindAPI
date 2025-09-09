@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Product;
 
 namespace NorthwindApi.Application.Features.Product.Commands;
@@ -21,13 +22,13 @@ internal class UpdateProductCommandHandler(
         using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
         {
             var existingProduct = await crudService.GetByIdAsync(command.UpdateProductRequest.Id);
-            if (existingProduct == null) return new ApiResponse(StatusCodes.Status404NotFound, "Product not found");
+            if (existingProduct == null) return new ApiResponse(StatusCodes.Status404NotFound, "Product not found!!!");
             
             mapper.Map(command.UpdateProductRequest, existingProduct);
             await crudService.UpdateAsync(existingProduct, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken); 
             var productDto = mapper.Map<ProductResponse>(existingProduct);
-            return new ApiResponse(StatusCodes.Status200OK, "Product updated successfully", productDto);
+            return new ApiResponse(StatusCodes.Status200OK, "Product updated successfully!!!", productDto);
         }
     }
 }

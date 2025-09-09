@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Category;
 
 namespace NorthwindApi.Application.Features.Category.Commands;
@@ -27,7 +28,7 @@ internal class UpdateCategoryCommandHandler(
             await crudService.UpdateAsync(existingCategory, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
             var categoryDto = mapper.Map<CategoryResponse>(existingCategory);
-            return new ApiResponse(StatusCodes.Status200OK, "Update Category successfully!!!", categoryDto);
+            return new ApiResponse(StatusCodes.Status200OK, "Category updated successfully!!!", categoryDto);
         }
     }
 }

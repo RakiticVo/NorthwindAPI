@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
 
 namespace NorthwindApi.Application.Features.Customer.Commands;
 
@@ -22,7 +23,7 @@ internal class DeleteCustomerCommandHandler(
             
             await crudService.DeleteAsync(existingCustomer, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
-            return new ApiResponse(StatusCodes.Status200OK, "Delete Customer successfully!!!");
+            return new ApiResponse(StatusCodes.Status200OK, "Customer deleted successfully!!!");
         }
     }
 }

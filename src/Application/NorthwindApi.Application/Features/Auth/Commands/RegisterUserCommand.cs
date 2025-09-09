@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Application.Validator;
 using NorthwindApi.Application.Validator.Auth;
@@ -36,7 +37,7 @@ internal class RegisterAuthCommandHandler(
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
                     .Where(x => x.Username == user.Username));
             var registerResponse = mapper.Map<RegisterResponse>(newUser);
-            return new ApiResponse(StatusCodes.Status201Created, "Create user successfully", registerResponse);
+            return new ApiResponse(StatusCodes.Status201Created, "User created successfully!!!", registerResponse);
         }
     }
 }

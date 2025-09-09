@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Queries;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Supplier;
 
 namespace NorthwindApi.Application.Features.Supplier.Queries;
@@ -16,8 +17,9 @@ internal class GetSuppliersHandler(
 
     public async Task<ApiResponse?> HandleAsync(GetSuppliers query, CancellationToken cancellationToken = default)
     {
-        var response = await crudService.GetAsync();
-        var suppliers = mapper.Map<List<SupplierResponse>>(response);
-        return new ApiResponse(StatusCodes.Status200OK, "Get Suppliers successfully!!!", suppliers);
+        var suppliers = await crudService.GetAsync();
+        return suppliers.Count == 0
+            ? new ApiResponse(StatusCodes.Status404NotFound, "No Suppliers found!!!")
+            : new ApiResponse(StatusCodes.Status200OK, "Get Suppliers successfully!!!", mapper.Map<List<SupplierResponse>>(suppliers));
     }
 }

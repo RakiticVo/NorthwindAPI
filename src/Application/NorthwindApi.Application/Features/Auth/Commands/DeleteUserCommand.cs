@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Application.Features.Auth.Commands;
@@ -35,7 +36,7 @@ internal class DeleteUserCommandHandler(
                 }
             }
             await unitOfWork.CommitTransactionAsync(cancellationToken);
-            return new ApiResponse(StatusCodes.Status200OK, "Delete User successfully");
+            return new ApiResponse(StatusCodes.Status200OK, "User deleted successfully!!!");
         }
     }
 }

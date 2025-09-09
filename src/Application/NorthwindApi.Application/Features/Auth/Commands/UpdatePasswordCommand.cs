@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Domain.Entities;
 using NorthwindApi.Infrastructure.Security;
 
@@ -33,7 +34,7 @@ internal class UpdatePasswordCommandHandler(
             existingUser.HashedPassword = PasswordHasherHandler.Hash(command.UserPassword);
             await crudService.UpdateAsync(existingUser, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
-            return new ApiResponse(StatusCodes.Status200OK, "Password updated successfully");
+            return new ApiResponse(StatusCodes.Status200OK, "Password updated successfully!!!");
         }
     }
 }

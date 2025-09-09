@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Queries;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Product;
 
 namespace NorthwindApi.Application.Features.Product.Queries;
@@ -15,8 +16,9 @@ internal class GetProductsHandler(
 {
     public async Task<ApiResponse?> HandleAsync(GetProducts query, CancellationToken cancellationToken = default)
     {
-        var response = await crudService.GetAsync();
-        var products = mapper.Map<List<ProductResponse>>(response);
-        return new ApiResponse(StatusCodes.Status200OK, "Get product successfully", products);
+        var products = await crudService.GetAsync();
+        return products.Count == 0
+        ? new ApiResponse(StatusCodes.Status404NotFound, "No Products found!!!")
+        : new ApiResponse(StatusCodes.Status200OK, "Get products successfully!!!", mapper.Map<List<ProductResponse>>(products));
     }
 }

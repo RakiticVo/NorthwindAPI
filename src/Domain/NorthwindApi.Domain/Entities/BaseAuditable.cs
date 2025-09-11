@@ -6,11 +6,11 @@ namespace NorthwindApi.Domain.Entities;
 public abstract class BaseAuditable
 {
     [Column("created_at")]
-    public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [Column("created_by")]
     [StringLength(50)]
-    public string? CreatedBy { get; set; } = "";
+    public string CreatedBy { get; set; } = "";
 
     [Column("updated_at")]
     public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;

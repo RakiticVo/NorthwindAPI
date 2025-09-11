@@ -72,13 +72,20 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("AdminPolicy", policy =>
     {
-        policy.RequireClaim("user_role_code", "admin");
+        policy.RequireClaim("userRole", "1");
     });
 
 // EF Core
 builder.Services.AddDbContext<NorthwindContext>(opt =>
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("Northwind"));
+    opt.UseSqlServer(
+        builder.Configuration.GetConnectionString("Northwind"),
+        sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(10),
+            errorNumbersToAdd: null
+        )
+    );
 });
 
 // DI
@@ -159,9 +166,15 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+// Middleware
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Northwind API V1");
+    c.RoutePrefix = string.Empty; // <-- quan trọng, để / ra swagger
+});
 app.UseMiddleware<ApiLoggingMiddleware>();
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

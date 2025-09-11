@@ -16,14 +16,14 @@ internal class DeleteShipperCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(DeleteShipperCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingShipper = await crudService.GetByIdAsync(command.ShipperId);
-            if (existingShipper == null) return new ApiResponse(StatusCodes.Status404NotFound, "Shipper not found!!!");
+            if (existingShipper == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Shipper not found!!!");
         
-            await crudService.DeleteAsync(existingShipper, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.DeleteAsync(existingShipper, token);
             return new ApiResponse(StatusCodes.Status200OK, "Shipper deleted successfully!!!");
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

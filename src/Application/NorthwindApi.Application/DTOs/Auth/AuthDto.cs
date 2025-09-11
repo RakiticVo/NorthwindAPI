@@ -10,8 +10,8 @@ public record RegisterUserRequest
     public string Username { get; init; } = null!;
     public string Email { get; init; } = null!;
     public string Password { get; init; } = null!;
-    [DefaultValue("user")]
-    public string UserRoleCode { get; init; } = "user";
+    [DefaultValue(2)] // Staff
+    public int UserRoleId { get; init; } = 2;
 }
 
 public record LoginRequest
@@ -22,13 +22,20 @@ public record LoginRequest
     public string DeviceType { get; init; } = "web";
 }
 
-public record UserTokenRequest
+public record CreateUserTokenRequest
 {
-    public int Id { get; init; }
+    public int UserId { get; init; }
     public required string AccessToken { get; init; }
     public required string TokenType { get; init; }
     public required string DeviceType { get; init; }
     public required string RefreshToken { get; init; }
+}
+
+public record UpdateUserPasswordRequest
+{
+    public string CurrentUserPassword { get; init; } = null!;
+    public string NewUserPassword { get; init; } = null!;
+    public string ConfirmUserPassword { get; init; } = null!;
 }
 
 /// <summary>
@@ -36,10 +43,9 @@ public record UserTokenRequest
 /// </summary>
 public record RegisterResponse
 {
-    public int Id { get; init; }
     public string Username { get; init; } = null!;
     public string Email { get; init; } = null!;
-    public string UserRoleCode { get; init; } = null!;
+    public int UserRoleId { get; init; }
 }
 
 public record AuthResponse
@@ -55,3 +61,11 @@ public record AuthResponse
         RefreshToken = refreshToken;
     }
 };
+
+public record UserResponse
+{
+    public string Username { get; init; } = null!;
+    public string Email { get; init; } = null!;
+    public int UserRoleId { get; init; }
+    public string UserRoleName { get; init; } = null!;
+}

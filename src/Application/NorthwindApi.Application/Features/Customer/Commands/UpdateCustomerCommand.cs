@@ -19,16 +19,16 @@ internal class UpdateCustomerCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(UpdateCustomerCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingCustomer = await crudService.GetByIdAsync(command.UpdateCustomerRequest.Id);
-            if (existingCustomer == null) return new ApiResponse(StatusCodes.Status404NotFound, "Customer not found!!!");
+            if (existingCustomer == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Customer not found!!!");
             
             mapper.Map(command.UpdateCustomerRequest, existingCustomer);
-            await crudService.UpdateAsync(existingCustomer, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.UpdateAsync(existingCustomer, token);
             var customerDto = mapper.Map<CustomerResponse>(existingCustomer);
             return new ApiResponse(StatusCodes.Status200OK, "Customer updated successfully!!!" , customerDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

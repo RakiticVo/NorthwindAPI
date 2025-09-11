@@ -9,18 +9,18 @@ namespace NorthwindApi.Application.Features.Auth.Handler;
 
 public static class AuthActionHandler
 {
-    public static UserTokenRequest CreateToken(ITokenService tokenService, User user, string deviceType)
+    public static CreateUserTokenRequest CreateToken(ITokenService tokenService, User user, string deviceType)
     {
         var accessToken = tokenService.CreateToken(user, deviceType, false);
         var refreshToken = tokenService.CreateToken(user, deviceType, true);
-        var userTokenRequest = new UserTokenRequest
+        var createUserTokenRequest = new CreateUserTokenRequest
         {
-            Id = user.Id,
+            UserId = user.Id,
             AccessToken = accessToken,
             TokenType = "bearer",
             DeviceType = deviceType,
             RefreshToken = refreshToken
         };
-        return userTokenRequest;
+        return createUserTokenRequest;
     }
 }

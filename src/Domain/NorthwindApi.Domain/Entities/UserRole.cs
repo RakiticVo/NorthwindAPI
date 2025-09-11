@@ -3,19 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NorthwindApi.Domain.Entities;
 
-[Table("user_roles")]
-public partial class UserRole : BaseAuditable
+[Table("UserRoles")]
+public partial class UserRole : BaseEntity<int>
 {
-    [Key]
-    [Column("user_role_code")]
-    [StringLength(50)]
-    public string UserRoleCode { get; set; } = null!;
-
-    [Column("user_role_name")]
+    [Column("UserRoleName")]
     [StringLength(50)]
     public string UserRoleName { get; set; } = null!;
 
-    [Column("user_role_description")]
+    [Column("UserRoleDescription")]
     [StringLength(255)]
     public string? UserRoleDescription { get; set; }
+    
+    [InverseProperty(nameof(User.UserRole))]
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

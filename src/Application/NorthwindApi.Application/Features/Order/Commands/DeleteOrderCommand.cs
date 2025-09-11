@@ -16,14 +16,14 @@ internal class DeleteOrderCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(DeleteOrderCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingOrder = await crudService.GetByIdAsync(command.OrderId);
-            if (existingOrder == null) return new ApiResponse(StatusCodes.Status404NotFound, "Order not found!!!");
-            
-            await crudService.DeleteAsync(existingOrder, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            if (existingOrder == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Order not found!!!");
+
+            await crudService.DeleteAsync(existingOrder, token);
             return new ApiResponse(StatusCodes.Status200OK, "Order deleted successfully!!!");
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

@@ -19,16 +19,16 @@ internal class UpdateProductCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(UpdateProductCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingProduct = await crudService.GetByIdAsync(command.UpdateProductRequest.Id);
-            if (existingProduct == null) return new ApiResponse(StatusCodes.Status404NotFound, "Product not found!!!");
+            if (existingProduct == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Product not found!!!");
             
             mapper.Map(command.UpdateProductRequest, existingProduct);
-            await crudService.UpdateAsync(existingProduct, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken); 
+            await crudService.UpdateAsync(existingProduct, token);
             var productDto = mapper.Map<ProductResponse>(existingProduct);
             return new ApiResponse(StatusCodes.Status200OK, "Product updated successfully!!!", productDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

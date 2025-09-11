@@ -16,14 +16,14 @@ internal class DeleteRegionCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(DeleteRegionCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingRegion = await crudService.GetByIdAsync(command.RegionId);
-            if (existingRegion == null) return new ApiResponse(StatusCodes.Status404NotFound, "Region not found!!!");
+            if (existingRegion == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Region not found!!!");
             
-            await crudService.DeleteAsync(existingRegion, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.DeleteAsync(existingRegion, token);
             return new ApiResponse(StatusCodes.Status200OK, "Region deleted successfully!!!");
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

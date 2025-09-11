@@ -50,6 +50,7 @@ public class NorthwindContext : DbContext, IUnitOfWork
 
     public DbConnection Connection => Database.GetDbConnection();
     public DbTransaction? CurrentTransaction => _currentTransaction?.GetDbTransaction();
+    public DbContext Context => this;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -142,12 +143,17 @@ public class NorthwindContext : DbContext, IUnitOfWork
         // Ánh xạ khóa chính cho User
         modelBuilder.Entity<User>()
             .Property(e => e.Id)
-            .HasColumnName("user_id");
+            .HasColumnName("UserID");
+        
+        // Ánh xạ khóa chính cho UserRole
+        modelBuilder.Entity<UserRole>()
+            .Property(e => e.Id)
+            .HasColumnName("UserRoleID");
         
         // Ánh xạ khóa chính cho UserToken
         modelBuilder.Entity<UserToken>()
             .Property(e => e.Id)
-            .HasColumnName("token_id");
+            .HasColumnName("UserTokenID");
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -173,7 +179,7 @@ public class NorthwindContext : DbContext, IUnitOfWork
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedAt = _dateTimeProvider?.VietnameseTimeNow;
+                    entry.Entity.CreatedAt = _dateTimeProvider!.VietnameseTimeNow;
                     entry.Entity.CreatedBy = string.IsNullOrEmpty(entry.Entity.CreatedBy) 
                         ? userName 
                         : entry.Entity.CreatedBy;
@@ -236,6 +242,27 @@ public class NorthwindContext : DbContext, IUnitOfWork
             await _currentTransaction.DisposeAsync();
             _currentTransaction = null;
         }
+    }
+
+    public Task<T> ExecuteInTransactionAsync<T>(Func<CancellationToken, Task<T>> operation, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
+        CancellationToken cancellationToken = default)
+    {
+        var strategy = Database.CreateExecutionStrategy();
+        return strategy.ExecuteAsync(async () =>
+        {
+            using var transaction = await BeginTransactionAsync(isolationLevel, cancellationToken);
+            try
+            {
+                var result = await operation(cancellationToken);
+                await CommitTransactionAsync(cancellationToken);
+                return result;
+            }
+            catch
+            {
+                await RollbackAsync(cancellationToken);
+                throw;
+            }
+        });
     }
 
     public override async ValueTask DisposeAsync()

@@ -12,7 +12,6 @@ namespace NorthwindApi.Api.Controllers;
 [ApiController]
 public class AuthController(Dispatcher dispatcher) : ControllerBase
 {
-    // POST: api/Auth/register
     [HttpPost("register")]
     [Authorize(Policy = "AdminPolicy")]
     public async Task<IActionResult> Register([FromBody]RegisterUserRequest registerUserRequest)
@@ -21,7 +20,6 @@ public class AuthController(Dispatcher dispatcher) : ControllerBase
         return this.ReturnActionHandler(data);
     }
     
-    // POST: api/Auth/login
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody]LoginRequest loginRequest)
     {
@@ -29,7 +27,6 @@ public class AuthController(Dispatcher dispatcher) : ControllerBase
         return this.ReturnActionHandler(data);
     }
     
-    // GET: api/Auth/user-details
     [HttpPost("user-details")]
     [Authorize]
     public async Task<IActionResult> UserDetails()
@@ -38,7 +35,6 @@ public class AuthController(Dispatcher dispatcher) : ControllerBase
         return this.ReturnActionHandler(data);
     }
     
-    // PUT: api/Auth/refresh-token
     [HttpPut("refresh-token")]
     [Authorize]
     public async Task<IActionResult> RefreshToken()
@@ -47,15 +43,13 @@ public class AuthController(Dispatcher dispatcher) : ControllerBase
         return this.ReturnActionHandler(data);
     }
     
-    // PUT: api/Auth/update-password
     [HttpPut("update-password")]
-    public async Task<IActionResult> UpdatePassword([FromBody]string userPassword)
+    public async Task<IActionResult> UpdatePassword([FromBody]UpdateUserPasswordRequest updateUserPasswordRequest)
     {
-        var data = await dispatcher.DispatchAsync(new UpdatePasswordCommand(userPassword));
+        var data = await dispatcher.DispatchAsync(new UpdatePasswordCommand(updateUserPasswordRequest));
         return this.ReturnActionHandler(data);
     }
     
-    // POST: api/Auth/logout
     [HttpPost("logout")]
     [Authorize]
     public async Task<IActionResult> Logout()
@@ -64,7 +58,6 @@ public class AuthController(Dispatcher dispatcher) : ControllerBase
         return this.ReturnActionHandler(data);
     }
     
-    // DELETE: api/Auth/delete
     [HttpDelete("delete/{id:int}")]
     [Authorize(Policy = "AdminPolicy")]
     public async Task<IActionResult> Delete(int id)

@@ -1404,3 +1404,13 @@ Query:
 ===== RESPONSE =====
 Status Code: 200
 ====================
+===== REQUEST =====
+Time: 2025-09-09 18:01:14
+Method: GET
+Path: /api/Orders/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================

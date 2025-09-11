@@ -14,10 +14,10 @@ public class ApiLoggingMiddleware
     {
         _next = next;
         
-        _logDirectory = Path.Combine(
-            Directory.GetParent(AppContext.BaseDirectory)!.Parent!.Parent!.Parent!.FullName,
-            "Logs"
-        );
+        var baseDir = Environment.GetEnvironmentVariable("LOG_DIR") 
+                      ?? AppContext.BaseDirectory;
+
+        _logDirectory = Path.Combine(baseDir, "Logs");
 
         if (!Directory.Exists(_logDirectory))
             Directory.CreateDirectory(_logDirectory);

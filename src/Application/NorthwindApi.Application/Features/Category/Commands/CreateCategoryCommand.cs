@@ -20,19 +20,19 @@ internal class CreateCategoryCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(CreateCategoryCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var category = mapper.Map<Domain.Entities.Category>(command.CreateCategoryRequest);
             var categories = await crudService.GetAsync();
             if (categories.Any(categoryItem => categoryItem.CategoryName == category.CategoryName)) 
                 return new ApiResponse(StatusCodes.Status409Conflict, "Category already exists!!!");
-            await crudService.AddAsync(category, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            
+            await crudService.AddAsync(category, token);
             var newCategory = await repository
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
                     .Where(x => x.CategoryName == category.CategoryName));
             var categoryDto = mapper.Map<CategoryResponse>(newCategory);
             return new ApiResponse(StatusCodes.Status201Created, "Category created successfully!!!", categoryDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

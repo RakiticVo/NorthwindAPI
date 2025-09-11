@@ -15,14 +15,14 @@ internal class DeleteProductCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(DeleteProductCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(cancellationToken: cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingProduct = await crudService.GetByIdAsync(command.Id);
-            if (existingProduct == null) return new ApiResponse(StatusCodes.Status404NotFound, "Product not found!!!");
+            if (existingProduct == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Product not found!!!");
 
-            await crudService.DeleteAsync(existingProduct, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.DeleteAsync(existingProduct, token);
             return new ApiResponse(StatusCodes.Status200OK, "Product deleted successfully!!!");
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

@@ -19,17 +19,16 @@ internal class UpdateOrderCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(UpdateOrderCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingOrder = await crudService.GetByIdAsync(command.UpdateOrderRequest.Id);
-            if (existingOrder == null) return new ApiResponse(StatusCodes.Status404NotFound, "Order not found!!!");
+            if (existingOrder == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Order not found!!!");
             
             mapper.Map(command.UpdateOrderRequest, existingOrder);
-            await crudService.UpdateAsync(existingOrder, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
-
+            await crudService.UpdateAsync(existingOrder, token);
             var orderDto = mapper.Map<OrderResponse>(existingOrder);
             return new ApiResponse(StatusCodes.Status200OK, "Order updated successfully!!!", orderDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

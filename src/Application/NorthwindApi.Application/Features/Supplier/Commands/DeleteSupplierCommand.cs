@@ -16,14 +16,14 @@ internal class DeleteSupplierCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(DeleteSupplierCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingSupplier = await crudService.GetByIdAsync(command.SupplierId);
-            if (existingSupplier == null) return new ApiResponse(StatusCodes.Status404NotFound, "Supplier not found!!!");
+            if (existingSupplier == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Supplier not found!!!");
 
-            await crudService.DeleteAsync(existingSupplier, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.DeleteAsync(existingSupplier, token);
             return new ApiResponse(StatusCodes.Status200OK, "Supplier deleted successfully!!!"); 
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

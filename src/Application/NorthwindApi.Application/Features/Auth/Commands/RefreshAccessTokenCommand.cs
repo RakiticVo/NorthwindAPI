@@ -1,5 +1,4 @@
-﻿using System.Data;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
@@ -27,7 +26,7 @@ internal class RefreshAccessTokenCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(RefreshAccessTokenCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var userName = httpContextAccessor.HttpContext?.User?.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value ?? "system"; 
             var isMobile = httpContextAccessor.HttpContext?.User?.FindFirst("isMobile")?.Value ?? "Web"; 
@@ -38,8 +37,9 @@ internal class RefreshAccessTokenCommandHandler(
             if (result is not null) return result;
             
             var existingUserToken = await userTokenRepository.FirstOrDefaultAsync(
-            userTokenRepository.GetQueryableSet()
-                .Where(x => x.UserId == existingUser!.Id && x.DeviceType.ToLower() == isMobile.ToLower()));
+                userTokenRepository.GetQueryableSet()
+                    .Where(x => x.UserId == existingUser!.Id && 
+                            x.DeviceType.ToLower() == isMobile.ToLower()));
             var checkResult = AuthValidation.UserTokenPrincipalAndExpiredValidate(existingUserToken, tokenService);
             if (checkResult is not null) return checkResult;
             
@@ -48,10 +48,9 @@ internal class RefreshAccessTokenCommandHandler(
             existingUserToken!.AccessToken = userToken.AccessToken;
             existingUserToken.RefreshToken = userToken.RefreshToken;
             existingUserToken.TokenType = userToken.TokenType;
-            await crudService.UpdateAsync(existingUserToken, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.UpdateAsync(existingUserToken, token);
             var authResponse = new AuthResponse(existingUser!.Username, userTokenRequest.AccessToken, userToken.RefreshToken);
             return new ApiResponse(StatusCodes.Status200OK, "Token refreshed successfully!!!", authResponse);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

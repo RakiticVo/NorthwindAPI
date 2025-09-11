@@ -1,5 +1,4 @@
-﻿using System.Data;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
@@ -26,7 +25,7 @@ internal class LoginAuthCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(LoginCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingUser = await userRepository.FirstOrDefaultAsync(userRepository.GetQueryableSet()
                 .Where(x => x.Username == command.LoginRequest.Username));
@@ -39,20 +38,16 @@ internal class LoginAuthCommandHandler(
             userTokenRepository.GetQueryableSet()
                 .Where(x => x.UserId == existingUser!.Id && 
                         x.DeviceType.ToLower() == command.LoginRequest.DeviceType.ToLower()));
-            if (existingUserToken == null) await crudService.AddAsync(userToken, cancellationToken);
+            if (existingUserToken == null) await crudService.AddAsync(userToken, token);
             else 
             {
                 existingUserToken.AccessToken = userToken.AccessToken;
                 existingUserToken.RefreshToken = userToken.RefreshToken;
                 existingUserToken.TokenType = userToken.TokenType;
-                await crudService.UpdateAsync(existingUserToken, cancellationToken);
+                await crudService.UpdateAsync(existingUserToken, token);
             }
-
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
             var authResponse = new AuthResponse(existingUser!.Username, userTokenRequest.AccessToken, userToken.RefreshToken);
             return new ApiResponse(StatusCodes.Status200OK, "Login successfully!!!", authResponse);
-        }
+        }, cancellationToken: cancellationToken);
     }
-    
-    
 }

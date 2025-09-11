@@ -16,14 +16,13 @@ internal class DeleteTerritoryCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(DeleteTerritoryCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingTerritory = await crudService.GetByIdAsync(command.TerritoryId);
             if (existingTerritory == null) return new ApiResponse(StatusCodes.Status404NotFound, "Territory not found!!!");
             
-            await crudService.DeleteAsync(existingTerritory, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.DeleteAsync(existingTerritory, token);
             return new ApiResponse(StatusCodes.Status200OK, "Territory deleted successfully!!!");
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

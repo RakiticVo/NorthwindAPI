@@ -17,13 +17,14 @@ internal class DeleteCategoryCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(DeleteCategoryCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingCategory = await crudService.GetByIdAsync(command.CategoryId);
-            if (existingCategory == null) return new ApiResponse(StatusCodes.Status404NotFound, "Category not found!!!");
-            await crudService.DeleteAsync(existingCategory, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            if (existingCategory == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Category not found!!!");
+            
+            await crudService.DeleteAsync(existingCategory, token);
             return new ApiResponse(StatusCodes.Status200OK, "Category deleted successfully!!!");
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

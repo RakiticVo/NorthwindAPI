@@ -19,16 +19,16 @@ internal class UpdateRegionCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(UpdateRegionCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingRegion = await crudService.GetByIdAsync(command.UpdateRegionRequest.Id);
-            if (existingRegion is null) return new ApiResponse(StatusCodes.Status404NotFound, "Region not found!!!");
+            if (existingRegion is null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Region not found!!!");
         
             mapper.Map(command.UpdateRegionRequest, existingRegion);
-            await crudService.UpdateAsync(existingRegion, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.UpdateAsync(existingRegion, token);
             var regionDto = mapper.Map<RegionResponse>(existingRegion);
             return new ApiResponse(StatusCodes.Status200OK, "Region updated successfully!!!", regionDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

@@ -22,8 +22,11 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => "admin"))
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
         CreateMap<RegisterResponse, User>().ReverseMap();
+        CreateMap<User, UserResponse>()
+            .ForMember(dest => dest.UserRoleName, opt => opt.MapFrom(src => src.UserRole != null ? src.UserRole.UserRoleName : null))
+            .ReverseMap();
         CreateMap<LoginRequest, User>();
-        CreateMap<UserTokenRequest, UserToken>()
+        CreateMap<CreateUserTokenRequest, UserToken>()
             .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
             
         // Mapping cho Product

@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: northwind-sql
+    environment:
+      SA_PASSWORD: "NorthwindDemo@123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1435:1433"
+    networks:
+      - backend
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: northwind-api
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__Northwind=Server=sqlserver;Database=NorthwindDemo;User Id=sa;Password=NorthwindDemo@123;TrustServerCertificate=True
+    ports:
+      - "5000:8080"
+    volumes:
+      - ./logs:/app/Logs
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

@@ -20,20 +20,19 @@ internal class CreateShipperCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(CreateShipperCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var shipper = mapper.Map<Domain.Entities.Shipper>(command.CreateShipperRequest);
             var shippers = await crudService.GetAsync();
             if (shippers.Any(shipperItem => shipperItem.CompanyName == shipper.CompanyName)) 
                 return new ApiResponse(StatusCodes.Status409Conflict, "Shipper already exists!!!");
             
-            await crudService.AddAsync(shipper, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.AddAsync(shipper, token);
             var newShipper = await repository
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
                     .Where(x => x.CompanyName == shipper.CompanyName));
             var shipperDto = mapper.Map<ShipperResponse>(newShipper);
             return new ApiResponse(StatusCodes.Status201Created, "Shipper created successfully!!!", shipperDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

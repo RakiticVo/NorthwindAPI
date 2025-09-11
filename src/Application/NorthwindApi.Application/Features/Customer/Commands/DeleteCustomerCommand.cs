@@ -16,14 +16,13 @@ internal class DeleteCustomerCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(DeleteCustomerCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingCustomer = await crudService.GetByIdAsync(command.CustomerId);
             if (existingCustomer == null) return new ApiResponse(StatusCodes.Status404NotFound, "Customer not found!!!");
             
-            await crudService.DeleteAsync(existingCustomer, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.DeleteAsync(existingCustomer, token);
             return new ApiResponse(StatusCodes.Status200OK, "Customer deleted successfully!!!");
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

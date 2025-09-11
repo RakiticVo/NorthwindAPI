@@ -20,19 +20,19 @@ internal class CreateCustomerCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(CreateCustomerCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var customer = mapper.Map<Domain.Entities.Customer>(command.CreateCustomerRequest);
             var customers = await crudService.GetAsync();
             if (customers.Any(customerItem => customerItem.CompanyName == customer.CompanyName)) 
                 return new ApiResponse(StatusCodes.Status409Conflict, "Customer already exists!!!");
-            await crudService.AddAsync(customer, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            
+            await crudService.AddAsync(customer, token);
             var newCustomer = await repository
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
                     .Where(x => x.CompanyName == customer.CompanyName));
             var customerDto = mapper.Map<CustomerResponse>(newCustomer);
             return new ApiResponse(StatusCodes.Status200OK, "Customer created successfully!!!", customerDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

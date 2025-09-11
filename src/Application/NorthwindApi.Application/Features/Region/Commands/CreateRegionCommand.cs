@@ -20,20 +20,19 @@ internal class CreateRegionCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(CreateRegionCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var region = mapper.Map<Domain.Entities.Region>(command.CreateRegionRequest);
             var regions = await crudService.GetAsync();
             if (regions.Any(regionItem => regionItem.RegionDescription == region.RegionDescription)) 
                 return new ApiResponse(StatusCodes.Status409Conflict, "Region already exists!!!");
 
-            await crudService.AddAsync(region, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.AddAsync(region, token);
             var newRegion = await repository
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
                     .Where(x => x.RegionDescription == region.RegionDescription));
             var regionDto = mapper.Map<RegionResponse>(newRegion);
             return new ApiResponse(StatusCodes.Status201Created, "Region created successfully!!!", regionDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

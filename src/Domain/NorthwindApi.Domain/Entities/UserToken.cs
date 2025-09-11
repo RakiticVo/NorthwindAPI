@@ -4,26 +4,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NorthwindApi.Domain.Entities;
 
-[Table("user_tokens")]
+[Table("UserTokens")]
 [Index("UserId", "DeviceType", Name = "uq_user_device", IsUnique = true)]
 public partial class UserToken : BaseEntity<int>
 {
-    [Column("user_id")]
+    [Column("UserID")]
     public int UserId { get; set; }
 
-    [Column("access_token")]
+    [Column("AccessToken")]
     [StringLength(1024)]
     public string AccessToken { get; set; } = null!;
 
-    [Column("token_type")]
+    [Column("TokenType")]
     [StringLength(50)]
     public string TokenType { get; set; } = null!;
 
-    [Column("device_type")]
+    [Column("DeviceType")]
     [StringLength(50)]
     public string DeviceType { get; set; } = null!;
 
-    [Column("refresh_token")]
+    [Column("RefreshToken")]
     [StringLength(1024)]
     public string RefreshToken { get; set; } = null!;
 

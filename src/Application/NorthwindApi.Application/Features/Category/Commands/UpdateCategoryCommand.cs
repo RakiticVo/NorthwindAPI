@@ -19,16 +19,16 @@ internal class UpdateCategoryCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(UpdateCategoryCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingCategory = await crudService.GetByIdAsync(command.UpdateCategoryRequest.Id);
-            if (existingCategory == null) return new ApiResponse(StatusCodes.Status404NotFound, "Category not found!!!");
+            if (existingCategory == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Category not found!!!");
             
             mapper.Map(command.UpdateCategoryRequest, existingCategory);
-            await crudService.UpdateAsync(existingCategory, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.UpdateAsync(existingCategory, token);
             var categoryDto = mapper.Map<CategoryResponse>(existingCategory);
             return new ApiResponse(StatusCodes.Status200OK, "Category updated successfully!!!", categoryDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

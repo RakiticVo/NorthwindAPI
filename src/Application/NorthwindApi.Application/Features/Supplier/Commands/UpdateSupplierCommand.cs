@@ -19,17 +19,16 @@ internal class UpdateSupplierCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(UpdateSupplierCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingSupplier = await crudService.GetByIdAsync(command.UpdateSupplierRequest.Id);
-            if (existingSupplier == null) return new ApiResponse(StatusCodes.Status404NotFound, "Supplier not found!!!");
+            if (existingSupplier == null) 
+                return new ApiResponse(StatusCodes.Status404NotFound, "Supplier not found!!!");
             
             mapper.Map(command.UpdateSupplierRequest, existingSupplier);
-            await crudService.UpdateAsync(existingSupplier, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
-            
+            await crudService.UpdateAsync(existingSupplier, token);
             var supplierDto = mapper.Map<SupplierResponse>(existingSupplier);
             return new ApiResponse(StatusCodes.Status200OK, "Supplier updated successfully!!!", supplierDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

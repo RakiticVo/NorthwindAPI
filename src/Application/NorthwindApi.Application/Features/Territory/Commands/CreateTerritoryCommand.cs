@@ -20,20 +20,19 @@ internal class CreateTerritoryCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(CreateTerritoryCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var territory = mapper.Map<Domain.Entities.Territory>(command.CreateTerritoryRequest);
             var territories = await crudService.GetAsync();
             if (territories.Any(territoryItem => territoryItem.TerritoryDescription == territory.TerritoryDescription)) 
                 return new ApiResponse(StatusCodes.Status409Conflict, "Territory already exists!!!");
 
-            await crudService.AddAsync(territory, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.AddAsync(territory, token);
             var newTerritory = await repository
                 .FirstOrDefaultAsync(repository.GetQueryableSet()
                     .Where(x => x.TerritoryDescription == territory.TerritoryDescription));
             var territoryDto = mapper.Map<TerritoryResponse>(newTerritory);
             return new ApiResponse(StatusCodes.Status201Created, "Territory created successfully!!!", territoryDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

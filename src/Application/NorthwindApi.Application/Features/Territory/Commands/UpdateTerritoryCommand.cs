@@ -19,16 +19,15 @@ internal class UpdateTerritoryCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(UpdateTerritoryCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
             var existingTerritory = await crudService.GetByIdAsync(command.UpdateTerritoryRequest.Id);
             if (existingTerritory is null) return new ApiResponse(StatusCodes.Status404NotFound, "Territory not found!!!");
         
             mapper.Map(command.UpdateTerritoryRequest, existingTerritory);
-            await crudService.UpdateAsync(existingTerritory, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
+            await crudService.UpdateAsync(existingTerritory, token);
             var territoryDto = mapper.Map<TerritoryResponse>(existingTerritory);
             return new ApiResponse(StatusCodes.Status200OK, "Territory updated successfully!!!", territoryDto);
-        }
+        }, cancellationToken: cancellationToken);
     }
 }

@@ -1,11 +1,12 @@
-﻿using System.Data;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
 using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Application.Features.Auth.Handler;
+using NorthwindApi.Application.Validator.Auth;
 using NorthwindApi.Domain.Entities;
 using NorthwindApi.Infrastructure.Security;
 
@@ -24,36 +25,29 @@ internal class LoginAuthCommandHandler(
 {
     public async Task<ApiResponse> HandleAsync(LoginCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
-            var user = await userRepository.FirstOrDefaultAsync(userRepository.GetQueryableSet()
+            var existingUser = await userRepository.FirstOrDefaultAsync(userRepository.GetQueryableSet()
                 .Where(x => x.Username == command.LoginRequest.Username));
-            var result = AuthActionHandler.CheckUserLoginHandler(
-                user,
-                command.LoginRequest.Password
-            );
+            var result = AuthValidation.UserLoginValidate(existingUser, command.LoginRequest.Password);
             if (result is not null) return result;
             
-            var userTokenRequest = AuthActionHandler.CreateToken(tokenService, user!, command.LoginRequest.DeviceType);
+            var userTokenRequest = AuthActionHandler.CreateToken(tokenService, existingUser!, command.LoginRequest.DeviceType.ToLower());
             var userToken = mapper.Map<UserToken>(userTokenRequest);
             var existingUserToken = await userTokenRepository.FirstOrDefaultAsync(
             userTokenRepository.GetQueryableSet()
-                .Where(x => x.UserId == user!.Id 
-                    && x.DeviceType == command.LoginRequest.DeviceType));
-            if (existingUserToken == null) await crudService.AddAsync(userToken, cancellationToken);
+                .Where(x => x.UserId == existingUser!.Id && 
+                        x.DeviceType.ToLower() == command.LoginRequest.DeviceType.ToLower()));
+            if (existingUserToken == null) await crudService.AddAsync(userToken, token);
             else 
             {
                 existingUserToken.AccessToken = userToken.AccessToken;
                 existingUserToken.RefreshToken = userToken.RefreshToken;
                 existingUserToken.TokenType = userToken.TokenType;
-                await crudService.UpdateAsync(existingUserToken, cancellationToken);
+                await crudService.UpdateAsync(existingUserToken, token);
             }
-
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
-            var authResponse = new AuthResponse(user!.Username, userTokenRequest.AccessToken, userToken.RefreshToken);
-            return new ApiResponse(StatusCodes.Status200OK, "Login successfully", authResponse);
-        }
+            var authResponse = new AuthResponse(existingUser!.Username, userTokenRequest.AccessToken, userToken.RefreshToken);
+            return new ApiResponse(StatusCodes.Status200OK, "Login successfully!!!", authResponse);
+        }, cancellationToken: cancellationToken);
     }
-    
-    
 }

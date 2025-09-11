@@ -1,0 +1,21 @@
+﻿------- Build Image Container -------
+/// Build All
+docker-compose up -d
+
+/// Build only one
+docker-compose up -d --build api(name image)
+
+/// Rebuild All
+docker-compose build --no-cache
+
+/// Stop And Remove All
+docker-compose down -v
+
+/// Stop And Remove only one
+docker-compose down -v api(name image)
+
+/// Only Stop All
+docker-compose down
+
+/// Stop And Remove only one
+docker-compose down api(name image)

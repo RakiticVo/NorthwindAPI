@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace NorthwindApi.Application.Common;
+namespace NorthwindApi.Application.Common.Response;
 
 [Serializable]
 [DataContract]

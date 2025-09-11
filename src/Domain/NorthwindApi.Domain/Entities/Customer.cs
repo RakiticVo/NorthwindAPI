@@ -40,23 +40,6 @@ public partial class Customer : BaseEntity<string>
     [StringLength(24)]
     public string? Fax { get; set; }
 
-    [Column("created_at")]
-    public DateTime CreatedAt { get; set; }
-
-    [Column("created_by")]
-    [StringLength(50)]
-    public string? CreatedBy { get; set; }
-
-    [Column("updated_at")]
-    public DateTime? UpdatedAt { get; set; }
-
-    [Column("updated_by")]
-    [StringLength(50)]
-    public string? UpdatedBy { get; set; }
-
-    [Column("row_version")]
-    public byte[]? RowVersion { get; set; }
-
     [InverseProperty("Customer")]
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 

@@ -5,7 +5,7 @@ namespace NorthwindApi.Domain.Entities;
 
 public partial class CustomerDemographic : BaseEntity<string>
 {
-    [Column(TypeName = "ntext")]
+    [StringLength(-1)]
     public string? CustomerDesc { get; set; }
 
     [ForeignKey("Id")]

@@ -1,38 +1,40 @@
-﻿using System.Data;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Common;
 using NorthwindApi.Application.Common.Commands;
+using NorthwindApi.Application.Common.Response;
+using NorthwindApi.Application.DTOs.Auth;
 using NorthwindApi.Domain.Entities;
 
 namespace NorthwindApi.Application.Features.Auth.Commands;
 
-public record LogoutCommand(int UserId, string DeviceType) : ICommand<ApiResponse>;
+public record LogoutCommand : ICommand<ApiResponse>;
 
 internal class LogoutAuthCommandHandler(
     ICrudService<User, int> userCrudService,
     ICrudService<UserToken, int> userTokenCrudService,
     IRepository<UserToken, int> userTokenRepository,
-    IUnitOfWork unitOfWork
+    IUnitOfWork unitOfWork,
+    IHttpContextAccessor httpContextAccessor
 ) : ICommandHandler<LogoutCommand, ApiResponse>
 {
     public async Task<ApiResponse> HandleAsync(LogoutCommand command, CancellationToken cancellationToken = default)
     {
-        using (await unitOfWork.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken))
+        return await unitOfWork.ExecuteInTransactionAsync(async token =>
         {
-            var user = await userCrudService.GetByIdAsync(command.UserId);
-            if (user == null)
-                return new ApiResponse(StatusCodes.Status403Forbidden, "User not found");
+            var userId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("userId")?.Value ?? "0");
+            var isMobile = httpContextAccessor.HttpContext?.User?.FindFirst("isMobile")?.Value ?? "Web"; 
+            var existingUser = await userCrudService.GetByIdAsync(userId);
+            if (existingUser == null) return new ApiResponse(StatusCodes.Status404NotFound, "User not found!!!");
+            
             var userToken = await userTokenRepository.FirstOrDefaultAsync(
-            userTokenRepository.GetQueryableSet()
-                .Where(x => 
-                    x.DeviceType.ToLower() == command.DeviceType.ToLower() &&
-                    x.UserId == command.UserId));
-            if (userToken == null)
-                return new ApiResponse(StatusCodes.Status403Forbidden, "User are not login");
-            await userTokenCrudService.DeleteAsync(userToken, cancellationToken);
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
-            return new ApiResponse(StatusCodes.Status200OK, "User successfully logged out");
-        }
+                userTokenRepository.GetQueryableSet()
+                    .Where(x => x.UserId == userId &&
+                            x.DeviceType.ToLower() == isMobile.ToLower()));
+            if (userToken == null) return new ApiResponse(StatusCodes.Status403Forbidden, "User are not login!!!");
+            
+            await userTokenCrudService.DeleteAsync(userToken, token);
+            return new ApiResponse(StatusCodes.Status200OK, "User logged out successfully!!!");
+        }, cancellationToken: cancellationToken);
     }
 }

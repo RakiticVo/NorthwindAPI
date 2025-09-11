@@ -1,3 +1,5 @@
+using NorthwindApi.Application.Common.Response;
+
 namespace NorthwindApi.Application.Common.Queries;
 
 public interface IQueryHandler<in TQuery, TResult>

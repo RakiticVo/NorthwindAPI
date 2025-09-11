@@ -1,0 +1,1930 @@
+===== REQUEST =====
+Time: 2025-09-11 03:36:04
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "admin"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 03:36:46
+Message: The maximum number of retries (5) was exceeded while executing database operations with 'SqlServerRetryingExecutionStrategy'. See the inner exception for the most recent failure.
+StackTrace:    at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 204
+   at NorthwindApi.Application.Features.Auth.Commands.RegisterAuthCommandHandler.HandleAsync(RegisterUserCommand userCommand, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/RegisterUserCommand.cs:line 27
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Register(RegisterUserRequest registerUserRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 03:59:08
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "admin"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 04:00:04
+Message: The maximum number of retries (5) was exceeded while executing database operations with 'SqlServerRetryingExecutionStrategy'. See the inner exception for the most recent failure.
+StackTrace:    at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 204
+   at NorthwindApi.Application.Features.Auth.Commands.RegisterAuthCommandHandler.HandleAsync(RegisterUserCommand userCommand, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/RegisterUserCommand.cs:line 27
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Register(RegisterUserRequest registerUserRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 04:03:01
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "admin"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 04:03:02
+Message: Invalid object name 'user_tokens'.
+StackTrace:    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Validator.Auth.AuthValidation.UserRegisterValidate(RegisterUserRequest registerUserRequest, ICrudService`2 crudService) in /src/src/Application/NorthwindApi.Application/Validator/Auth/AuthValidation.cs:line 17
+   at NorthwindApi.Application.Features.Auth.Commands.RegisterAuthCommandHandler.HandleAsync(RegisterUserCommand userCommand, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/RegisterUserCommand.cs:line 30
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Register(RegisterUserRequest registerUserRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 04:29:49
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "admin"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 04:29:50
+Message: Invalid column name 'user_id'.
+Invalid column name 'user_id'.
+Invalid column name 'token_id'.
+Invalid column name 'user_id'.
+StackTrace:    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Validator.Auth.AuthValidation.UserRegisterValidate(RegisterUserRequest registerUserRequest, ICrudService`2 crudService) in /src/src/Application/NorthwindApi.Application/Validator/Auth/AuthValidation.cs:line 17
+   at NorthwindApi.Application.Features.Auth.Commands.RegisterAuthCommandHandler.HandleAsync(RegisterUserCommand userCommand, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/RegisterUserCommand.cs:line 30
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Register(RegisterUserRequest registerUserRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 04:32:46
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "admin"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 04:32:47
+Message: Invalid column name 'TokenId'.
+StackTrace:    at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Validator.Auth.AuthValidation.UserRegisterValidate(RegisterUserRequest registerUserRequest, ICrudService`2 crudService) in /src/src/Application/NorthwindApi.Application/Validator/Auth/AuthValidation.cs:line 17
+   at NorthwindApi.Application.Features.Auth.Commands.RegisterAuthCommandHandler.HandleAsync(RegisterUserCommand userCommand, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/RegisterUserCommand.cs:line 30
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Register(RegisterUserRequest registerUserRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 04:36:18
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "admin"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 04:36:20
+Message: The time zone ID 'SE Asia Standard Time' was not found on the local computer.
+StackTrace:    at System.TimeZoneInfo.FindSystemTimeZoneById(String id)
+   at System.TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime dateTime, String destinationTimeZoneId)
+   at NorthwindApi.Application.Common.DateTimes.DateTimeProvider.get_VietnameseTimeNow() in /src/src/Application/NorthwindApi.Application/Common/DateTimes/DateTimeProvider.cs:line 8
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 176
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Auth.Commands.RegisterAuthCommandHandler.HandleAsync(RegisterUserCommand userCommand, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/RegisterUserCommand.cs:line 34
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Register(RegisterUserRequest registerUserRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 11:42:08
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "admin"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 11:42:09
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 196
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Auth.Commands.RegisterAuthCommandHandler.HandleAsync(RegisterUserCommand userCommand, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/RegisterUserCommand.cs:line 34
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Register(RegisterUserRequest registerUserRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 11:50:06
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "admin"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 11:50:07
+Message: The configured execution strategy 'SqlServerRetryingExecutionStrategy' does not support user-initiated transactions. Use the execution strategy returned by 'DbContext.Database.CreateExecutionStrategy()' to execute all the operations in the transaction as a retriable unit.
+StackTrace:    at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.OnFirstExecution()
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 196
+   at NorthwindApi.Application.Features.Auth.Commands.RegisterAuthCommandHandler.HandleAsync(RegisterUserCommand userCommand, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/RegisterUserCommand.cs:line 35
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Register(RegisterUserRequest registerUserRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 13:15:45
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "admin"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-11 13:21:24
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "admin",
+  "email": "admin@northwinddemo.com",
+  "password": "admin@123123",
+  "userRoleCode": "0"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-11 13:35:57
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 13:35:59
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 197
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Auth.Commands.LoginAuthCommandHandler.HandleAsync(LoginCommand command, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/LoginCommand.cs:line 42
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Login(LoginRequest loginRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 26
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 13:36:03
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 13:36:03
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 197
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Auth.Commands.LoginAuthCommandHandler.HandleAsync(LoginCommand command, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/LoginCommand.cs:line 42
+   at CallSite.Target(Closure, CallSite, Object)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Login(LoginRequest loginRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 26
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 13:36:41
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 13:36:43
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 197
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Auth.Commands.LoginAuthCommandHandler.HandleAsync(LoginCommand command, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/LoginCommand.cs:line 42
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Login(LoginRequest loginRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 26
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 13:41:19
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 13:41:21
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 197
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Auth.Commands.LoginAuthCommandHandler.<>c__DisplayClass7_0.<<HandleAsync>b__0>d.MoveNext() in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/LoginCommand.cs:line 41
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 251
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 258
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Features.Auth.Commands.LoginAuthCommandHandler.HandleAsync(LoginCommand command, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/LoginCommand.cs:line 28
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Login(LoginRequest loginRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 26
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 13:57:56
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 13:57:57
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 197
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Auth.Commands.LoginAuthCommandHandler.<>c__DisplayClass7_0.<<HandleAsync>b__0>d.MoveNext() in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/LoginCommand.cs:line 41
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 251
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 258
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Features.Auth.Commands.LoginAuthCommandHandler.HandleAsync(LoginCommand command, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Auth/Commands/LoginCommand.cs:line 28
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.AuthController.Login(LoginRequest loginRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/AuthController.cs:line 26
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 14:05:46
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:06:20
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user1",
+  "email": "user1@northwinddemo.com",
+  "password": "user1@123123",
+  "userRoleId": 2
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:06:37
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user1",
+  "email": "user1@northwinddemo.com",
+  "password": "user1@123123",
+  "userRoleId": 2
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:09:46
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user1",
+  "email": "user1@northwinddemo.com",
+  "password": "user1@123123",
+  "userRoleId": 2
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:12:44
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user2",
+  "email": "user2@northwinddemo.com",
+  "password": "user2@123123",
+  "userRoleId": 2
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:13:00
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user3",
+  "email": "user3@northwinddemo.com",
+  "password": "user3@123123",
+  "userRoleId": 2
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:13:49
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "user1",
+  "password": "user1@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:14:10
+Method: POST
+Path: /api/Auth/register
+Body: {
+  "username": "user4",
+  "email": "user4@northwinddemo.com",
+  "password": "user4@123123",
+  "userRoleId": 2
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:14:16
+Method: POST
+Path: /api/Auth/user-details
+Body: 
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 14:14:16
+Message: A possible object cycle was detected. This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 32. Consider using ReferenceHandler.Preserve on JsonSerializerOptions to support cycles. Path: $.Result.UserTokens.User.UserTokens.User.UserTokens.User.UserTokens.User.UserTokens.User.UserTokens.User.UserTokens.User.UserTokens.User.UserTokens.User.UserTokens.User.Username.
+StackTrace:    at System.Text.Json.ThrowHelper.ThrowJsonException_SerializerCycleDetected(Int32 maxDepth)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWriteAsObject(Utf8JsonWriter writer, Object value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(Stream utf8Json, T rootValue, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(Stream utf8Json, T rootValue, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(Stream utf8Json, T rootValue, CancellationToken cancellationToken, Object rootValueBoxed)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 14:42:43
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:43:01
+Method: POST
+Path: /api/Auth/user-details
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 14:48:12
+Method: POST
+Path: /api/Auth/user-details
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 15:42:54
+Method: PUT
+Path: /api/Auth/refresh-token
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 15:54:01
+Method: PUT
+Path: /api/Auth/refresh-token
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 15:54:43
+Method: PUT
+Path: /api/Auth/update-password
+Body: {
+  "currentUserPassword": "admin@123123",
+  "newUserPassword": "admin@124124",
+  "confirmUserPassword": "admin@124124"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-11 15:57:37
+Method: PUT
+Path: /api/Auth/update-password
+Body: {
+  "currentUserPassword": "admin@123123",
+  "newUserPassword": "admin@124124",
+  "confirmUserPassword": "admin@124124"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 15:58:07
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-11 15:58:13
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@124124",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 15:58:43
+Method: PUT
+Path: /api/Auth/update-password
+Body: {
+  "currentUserPassword": "admin@124124",
+  "newUserPassword": "admin@123123",
+  "confirmUserPassword": "admin@123123"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:00:27
+Method: POST
+Path: /api/Auth/logout
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:00:54
+Method: PUT
+Path: /api/Auth/refresh-token
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 401
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:01:10
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@124124",
+  "deviceType": "web"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 403
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:01:34
+Method: POST
+Path: /api/Auth/login
+Body: {
+  "username": "admin",
+  "password": "admin@123123",
+  "deviceType": "mobile"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:02:32
+Method: DELETE
+Path: /api/Auth/delete/5
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:09:30
+Method: GET
+Path: /api/Customers/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:09:43
+Method: GET
+Path: /api/Customers/get/ANATR
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:10:26
+Method: POST
+Path: /api/Customers/create-new
+Body: {
+  "id": "SUP001",
+  "companyName": "Công ty TNHH ABC",
+  "contactName": "Nguyễn Văn A",
+  "contactTitle": "Giám đốc",
+  "address": "123 Đường Lê Lợi",
+  "city": "Hà Nội",
+  "region": "Miền Bắc",
+  "postalCode": "100000",
+  "country": "Việt Nam",
+  "phone": "+84-24-12345678",
+  "fax": "+84-24-87654321"
+}
+
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 16:10:27
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 202
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Customer.Commands.CreateCustomerCommandHandler.HandleAsync(CreateCustomerCommand command, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Customer/Commands/CreateCustomerCommand.cs:line 29
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.CustomersController.CreateCustomer(CreateCustomerRequest request) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/CustomersController.cs:line 34
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 16:12:27
+Method: GET
+Path: /api/Categories/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:12:36
+Method: GET
+Path: /api/Categories/get/8
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:13:20
+Method: POST
+Path: /api/Categories/create-new
+Body: {
+    "categoryName": "Electronics",
+    "description": "Smartphones and laptops"
+  }
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:13:58
+Method: PUT
+Path: /api/Categories/update
+Body: {
+  "id": 9,
+  "categoryName": "Clothing",
+    "description": "Casual wear and accessories"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:14:10
+Method: DELETE
+Path: /api/Categories/delete/9
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:21:26
+Method: GET
+Path: /api/Customers/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:21:30
+Method: GET
+Path: /api/Customers/get/ANATR
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:21:34
+Method: POST
+Path: /api/Customers/create-new
+Body: {
+  "id": "SUP001",
+  "companyName": "Công ty TNHH ABC",
+  "contactName": "Nguyễn Văn A",
+  "contactTitle": "Giám đốc",
+  "address": "123 Đường Lê Lợi",
+  "city": "Hà Nội",
+  "region": "Miền Bắc",
+  "postalCode": "100000",
+  "country": "Việt Nam",
+  "phone": "+84-24-12345678",
+  "fax": "+84-24-87654321"
+}
+
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 16:21:35
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 202
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Customer.Commands.CreateCustomerCommandHandler.<>c__DisplayClass5_0.<<HandleAsync>b__0>d.MoveNext() in /src/src/Application/NorthwindApi.Application/Features/Customer/Commands/CreateCustomerCommand.cs:line 30
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 256
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 263
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Features.Customer.Commands.CreateCustomerCommandHandler.HandleAsync(CreateCustomerCommand command, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Customer/Commands/CreateCustomerCommand.cs:line 23
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.CustomersController.CreateCustomer(CreateCustomerRequest request) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/CustomersController.cs:line 34
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 16:31:03
+Method: POST
+Path: /api/Customers/create-new
+Body: {
+  "id": "SUP01",
+  "companyName": "Công ty TNHH ABC",
+  "contactName": "Nguyễn Văn A",
+  "contactTitle": "Giám đốc",
+  "address": "123 Đường Lê Lợi",
+  "city": "Hà Nội",
+  "region": "Miền Bắc",
+  "postalCode": "100000",
+  "country": "Việt Nam",
+  "phone": "+84-24-12345678",
+  "fax": "+84-24-87654321"
+}
+
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:32:40
+Method: PUT
+Path: /api/Customers/update
+Body: {
+  "id": "SUP01",
+  "companyName": "ABC Corp",
+  "contactName": "Nguyen Van A",
+  "contactTitle": "Manager",
+  "address": "123 Le Loi St",
+  "city": "Hanoi",
+  "region": "North",
+  "postalCode": "10000",
+  "country": "Vietnam",
+  "phone": "0123456789",
+  "fax": "0987654321"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:33:53
+Method: DELETE
+Path: /api/Customers/delete/SUP01
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:39:47
+Method: GET
+Path: /api/Orders/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:39:55
+Method: GET
+Path: /api/Orders/get-by-page
+Body: 
+Query: ?PageNumber=1&PageSize=100
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:40:01
+Method: GET
+Path: /api/Orders/get/2
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:43:02
+Method: POST
+Path: /api/Orders/create-new
+Body: {
+    "customerId": "ALFKI",
+    "employeeId": 1,
+    "orderDate": "2025-09-11T09:41:13.263Z",
+    "requiredDate": "2025-09-12T09:41:13.263Z",
+    "shippedDate": "2025-09-12T09:41:13.263Z",
+    "shipVia": 1,
+    "freight": 50.25,
+    "shipName": "Fast Delivery",
+    "shipAddress": "456 Tran Phu St",
+    "shipCity": "HCM",
+    "shipRegion": "South",
+    "shipPostalCode": "70000",
+    "shipCountry": "Vietnam"
+  }
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:43:50
+Method: PUT
+Path: /api/Orders/update
+Body: {
+  "id": 5,
+  "customerId": "string",
+  "employeeId": 2,
+    "orderDate": "2025-09-10T14:30:00.000Z",
+    "requiredDate": "2025-09-15T14:30:00.000Z",
+    "shippedDate": "2025-09-14T14:30:00.000Z",
+    "shipVia": 2,
+    "freight": 75.00,
+    "shipName": "Quick Ship",
+    "shipAddress": "789 Hai Ba Trung St",
+    "shipCity": "Da Nang",
+    "shipRegion": "Central",
+    "shipPostalCode": "55000",
+    "shipCountry": "Vietnam"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 16:43:51
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 202
+   at NorthwindApi.Application.Common.CrudService`2.UpdateAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 46
+   at NorthwindApi.Application.Features.Order.Commands.UpdateOrderCommandHandler.<>c__DisplayClass4_0.<<HandleAsync>b__0>d.MoveNext() in /src/src/Application/NorthwindApi.Application/Features/Order/Commands/UpdateOrderCommand.cs:line 29
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 256
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 263
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Features.Order.Commands.UpdateOrderCommandHandler.HandleAsync(UpdateOrderCommand command, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Order/Commands/UpdateOrderCommand.cs:line 22
+   at CallSite.Target(Closure, CallSite, Object)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.OrdersController.UpdateOrder(UpdateOrderRequest request) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/OrderController.cs:line 47
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 16:48:04
+Method: PUT
+Path: /api/Orders/update
+Body: {
+  "id": 5,
+  "customerId": "ALFKI",
+  "employeeId": 2,
+   "orderDate": "2025-09-10T14:30:00.000Z",
+   "requiredDate": "2025-09-15T14:30:00.000Z",
+   "shippedDate": "2025-09-14T14:30:00.000Z",
+    "shipVia": 2,
+    "freight": 75.00,
+    "shipName": "Quick Ship",
+    "shipAddress": "789 Hai Ba Trung St",
+    "shipCity": "Da Nang",
+    "shipRegion": "Central",
+    "shipPostalCode": "55000",
+    "shipCountry": "Vietnam"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:48:31
+Method: DELETE
+Path: /api/Orders/delete/5
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:53:17
+Method: GET
+Path: /api/Products/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:53:28
+Method: GET
+Path: /api/Products/get/52
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:53:54
+Method: POST
+Path: /api/Products/create-new
+Body: {
+    "productName": "Green Tea",
+    "supplierId": 1,
+    "categoryId": 1,
+    "quantityPerUnit": "20 bags x 2g",
+    "unitPrice": 5.99,
+    "unitsInStock": 100,
+    "unitsOnOrder": 50,
+    "reorderLevel": 20,
+    "discontinued": false
+  }
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:54:18
+Method: PUT
+Path: /api/Products/update
+Body: {
+  "id": 78,
+  "productName": "Coffee Beans",
+    "supplierId": 2,
+    "categoryId": 2,
+    "quantityPerUnit": "1kg bag",
+    "unitPrice": 12.50,
+    "unitsInStock": 75,
+    "unitsOnOrder": 30,
+    "reorderLevel": 15,
+    "discontinued": false
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 16:54:25
+Method: DELETE
+Path: /api/Products/delete/78
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:00:59
+Method: GET
+Path: /api/Regions/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:01:07
+Method: GET
+Path: /api/Regions/get/4
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:01:18
+Method: POST
+Path: /api/Regions/create-new
+Body: {
+  "regionDescription": "Central"
+}
+Query: 
+===================
+***** ERROR *****
+Time: 2025-09-11 17:01:19
+Message: An error occurred while saving the entity changes. See the inner exception for details.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at NorthwindApi.Persistence.NorthwindContext.SaveChangesAsync(CancellationToken cancellationToken) in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 202
+   at NorthwindApi.Application.Common.CrudService`2.AddAsync(T entity, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Common/CrudService.cs:line 39
+   at NorthwindApi.Application.Features.Region.Commands.CreateRegionCommandHandler.<>c__DisplayClass5_0.<<HandleAsync>b__0>d.MoveNext() in /src/src/Application/NorthwindApi.Application/Features/Region/Commands/CreateRegionCommand.cs:line 30
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 256
+--- End of stack trace from previous location ---
+   at NorthwindApi.Persistence.NorthwindContext.<>c__DisplayClass72_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext() in /src/src/Infrastructure/NorthwindApi.Persistence/NorthwindContext.cs:line 263
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at NorthwindApi.Application.Features.Region.Commands.CreateRegionCommandHandler.HandleAsync(CreateRegionCommand command, CancellationToken cancellationToken) in /src/src/Application/NorthwindApi.Application/Features/Region/Commands/CreateRegionCommand.cs:line 23
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NorthwindApi.Application.Common.Dispatcher.DispatchAsync[T](ICommand`1 command, CancellationToken cancellationToken)
+   at NorthwindApi.Api.Controllers.RegionsController.CreateRegion(CreateRegionRequest createRegionRequest) in /src/src/Presentation/Api/NorthwindApi.Api/Controllers/RegionController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NorthwindApi.Infrastructure.Middlewares.ApiLoggingMiddleware.InvokeAsync(HttpContext context) in /src/src/Infrastructure/NorthwindApi.Infrastructure/Middlewares/ApiLoggingMiddleware.cs:line 55
+*****************
+===== REQUEST =====
+Time: 2025-09-11 17:14:33
+Method: POST
+Path: /api/Regions/create-new
+Body: {
+  "regionDescription": "Central"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:15:45
+Method: PUT
+Path: /api/Regions/update
+Body: {
+  "id": 5,
+  "regionDescription": "North Western"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:16:08
+Method: DELETE
+Path: /api/Regions/delete/5
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:16:23
+Method: GET
+Path: /api/Shippers/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:16:29
+Method: GET
+Path: /api/Shippers/get/3
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:16:32
+Method: GET
+Path: /api/Shippers/get/4
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 404
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:16:34
+Method: GET
+Path: /api/Shippers/get/3
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:17:26
+Method: POST
+Path: /api/Shippers/create-new
+Body: {
+    "companyName": "Express Logistics",
+    "phone": "0112233445"
+  }
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:17:49
+Method: PUT
+Path: /api/Shippers/update
+Body: {
+  "id": 4,
+  "companyName": "Speedy Transport",
+    "phone": "0223344556"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:17:59
+Method: DELETE
+Path: /api/Shippers/delete/4
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:23:11
+Method: GET
+Path: /api/Suppliers/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:23:19
+Method: GET
+Path: /api/Suppliers/get/2
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:23:58
+Method: POST
+Path: /api/Suppliers/create-new
+Body: {
+  "companyName": "Green Fields Inc",
+  "contactName": "Tran Van B",
+  "contactTitle": "Sales Manager",
+  "address": "789 Nguyen Trai St",
+  "city": "Da Nang",
+  "region": "Central",
+  "postalCode": "55000",
+  "country": "Vietnam",
+  "phone": "0234567890",
+  "fax": "0234567891",
+  "homePage": "www.greenfields.com"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:24:22
+Method: PUT
+Path: /api/Suppliers/update
+Body: {
+  "id": 30,
+  "companyName": "Red Hills Ltd",
+    "contactName": "Pham Van D",
+    "contactTitle": "Supply Chain Manager",
+    "address": "202 Le Duan St",
+    "city": "HCM",
+    "region": "South",
+    "postalCode": "70001",
+    "country": "Vietnam",
+    "phone": "0289012345",
+    "fax": "0289012346",
+    "homePage": "www.redhills.com"
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:24:40
+Method: DELETE
+Path: /api/Suppliers/delete/30
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:24:49
+Method: GET
+Path: /api/Territories/get-all
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:25:00
+Method: GET
+Path: /api/Territories/get/08837
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:26:07
+Method: POST
+Path: /api/Territories/create-new
+Body: {
+    "id": "TER01",
+    "territoryDescription": "Northern Highlands",
+    "regionId": 1
+  }
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 201
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:26:28
+Method: PUT
+Path: /api/Territories/update
+Body: {
+  "id": "TER01",
+  "territoryDescription": "Central Coast",
+    "regionId": 2
+}
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================
+===== REQUEST =====
+Time: 2025-09-11 17:26:40
+Method: DELETE
+Path: /api/Territories/delete/TER01
+Body: 
+Query: 
+===================
+===== RESPONSE =====
+Status Code: 200
+====================

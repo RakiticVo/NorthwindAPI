@@ -1,6 +1,6 @@
 ﻿using NorthwindApi.Domain.Entities;
 
-namespace NorthwindApi.Infrastructure.Identity;
+namespace NorthwindApi.Persistence.Identity;
 
 public interface IUserService
 {

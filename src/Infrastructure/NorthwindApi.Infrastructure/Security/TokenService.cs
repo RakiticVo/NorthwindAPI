@@ -35,9 +35,9 @@ public class TokenService : ITokenService
         if (!isRefreshToken)
         {
             claims.AddRange([
-                new Claim("user_id", user.Id.ToString()),
+                new Claim("userId", user.Id.ToString()),
                 new Claim("email", user.Email),
-                new Claim("user_role_code", user.UserRoleCode ?? "user"),
+                new Claim("userRole", user.UserRoleId.ToString()),
                 new Claim("isMobile", deviceType)
             ]);
         }

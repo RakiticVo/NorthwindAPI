@@ -1,4 +1,5 @@
-﻿using NorthwindApi.Application.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using NorthwindApi.Application.Abstractions;
 using NorthwindApi.Application.Validator;
 using NorthwindApi.Domain.Entities;
 using NorthwindApi.Domain.Events;
@@ -12,6 +13,20 @@ public class CrudService<T, TKey>(Dispatcher dispatcher, IRepository<T, TKey> re
     private readonly IUnitOfWork _unitOfWork = repository.UnitOfWork;
 
     public Task<List<T>> GetAsync() => repository.ToListAsync(repository.GetQueryableSet());
+    public async Task<List<T>> GetPagedAsync(int pageNumber, int pageSize, Func<IQueryable<T>, IQueryable<T>>? include = null)
+    {
+        var query = repository.GetQueryableSet();
+        if (include != null)
+        {
+            query = include(query);
+        }
+
+        return await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+    }
+
     public async Task<T?> GetByIdAsync(TKey id)
     {
         ValidationExceptions.Requires(id != null, "Invalid Id");

@@ -13,6 +13,7 @@ using NorthwindApi.Infrastructure.Cache;
 using NorthwindApi.Infrastructure.Security;
 using NorthwindApi.Infrastructure.Middlewares;
 using NorthwindApi.Persistence;
+using NorthwindApi.Persistence.Identity;
 using NorthwindApi.Persistence.Locking;
 using NorthwindApi.Persistence.Repository;
 
@@ -150,6 +151,8 @@ builder.Services.AddDistributedSqlServerCache(options =>
     options.SchemaName = "dbo";
     options.TableName = "CacheTable";
 });
+
+builder.Services.AddHostedService<AdminInitializerService>();
 
 var app = builder.Build();
 
